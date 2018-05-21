@@ -62,18 +62,18 @@ public class Principal extends AppCompatActivity
     FirebaseUser user;
     private GoogleSignInClient mGoogleSignInClient;
 
-    Toolbar toolbar;
+
     FloatingActionButton fab;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     ViewPager viewPager;
     TabLayout tableLayout;
+    static String TAG_EJERCICIO = "Todos";
 
     View headerView;
     CircleImageView imagenUsuario;
     TextView nombreUsuario, emailUsuario;
-    CollapsingToolbarLayout collapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +116,6 @@ public class Principal extends AppCompatActivity
                 Glide.with(Principal.this).load(user.getPhotoUrl()).into(imagenUsuario);
             }
             if(user.getDisplayName() == null || user.getDisplayName().equals("")) {
-                //Toast.makeText(this, "Usuario sin nombre", Toast.LENGTH_LONG).show();
                 LeerUsuarioBD leerUsuarioBD = new LeerUsuarioBD(mAuth, nombreUsuario);
                 leerUsuarioBD.execute();
             }
@@ -161,7 +160,7 @@ public class Principal extends AppCompatActivity
     }
 
     private void configurarToolbar() {
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -228,9 +227,10 @@ public class Principal extends AppCompatActivity
 
     @Override
     public void onTipoSelected(Ejercicios ej) {
-        Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+        TAG_EJERCICIO = ej.getNombre();
+
         Intent i = new Intent(Principal.this, TipoEjercicio.class);
-        i.putExtra("TipoEjercicio", ej.getNombre());
+        i.putExtra(TAG_EJERCICIO, ej.getNombre());
         startActivity(i);
     }
 }
