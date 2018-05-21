@@ -37,8 +37,12 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipo_ejercicio);
+
+        String ho = getIntent().getExtras().getString("TipoEjercicio");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(ho);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +53,7 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
             }
         });
 
-        String ho = getIntent().getExtras().getString("TipoEjercicio");
+
         Toast.makeText(this, ho, Toast.LENGTH_SHORT).show();
         instancias();
         rellenarLista();
@@ -61,7 +65,7 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
 
     private void rellenarLista() {
         database = FirebaseDatabase.getInstance();
-        referencia = database.getReference("Tipo Ejercicios");
+        referencia = database.getReference("Tipo Ejercicios").child("Abdominales");
 
         ejercicios = new ArrayList<>();
 
