@@ -46,6 +46,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.asyntask.LeerUsuarioBD;
+import retamar.com.gym_app.dialogos.DialogoInicio;
 import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
 import retamar.com.gym_app.utils.Ejercicios;
 import retamar.com.gym_app.utils.Modelo;
@@ -53,7 +54,7 @@ import retamar.com.gym_app.utils.Usuario;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        AdaptadorRecycler_Lista.OnTipoSelectedListener {
+        AdaptadorRecycler_Lista.OnTipoSelectedListener, DialogoInicio.OnDialogoInicio {
 
     Modelo modelo;
 
@@ -232,5 +233,10 @@ public class Principal extends AppCompatActivity
         Intent i = new Intent(Principal.this, TipoEjercicio.class);
         i.putExtra(TAG_EJERCICIO, ej.getNombre());
         startActivity(i);
+    }
+
+    @Override
+    public void onDataDialogoInicio(String s) {
+        
     }
 }

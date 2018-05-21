@@ -5,12 +5,15 @@ import android.os.AsyncTask;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,33 +41,56 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
         final List<Ejercicios> ejercicios = new ArrayList<>();
         final AdaptadorTipoEjercicio adaptador = new AdaptadorTipoEjercicio(contexto, ejercicios);
 
-        referencia.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ejercicios.add(dataSnapshot.getValue(Ejercicios.class));
-                adaptador.notifyDataSetChanged();
-            }
+        if(referencia.getKey().equals("Ejercicios")) {
+            referencia.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // Doble bucle foreach para recorrer un hijo que tiene otro hijo y obtener los datos
+                    for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                       for (DataSnapshot snapshot2:snapshot.getChildren()) {
+                            Ejercicios ej = snapshot2.getValue(Ejercicios.class);
+                            ejercicios.add(ej);
+                            adaptador.notifyDataSetChanged();
+                        }
+                    }
+                }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
+                }
+            });
+        }
+        else {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            referencia.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    ejercicios.add(dataSnapshot.getValue(Ejercicios.class));
+                    adaptador.notifyDataSetChanged();
+                }
 
-            }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
 
-            }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
 
-            }
-        });
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
 
         recycler.setAdapter(adaptador);
         recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));

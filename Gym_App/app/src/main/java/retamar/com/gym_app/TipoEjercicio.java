@@ -77,8 +77,14 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
         database = FirebaseDatabase.getInstance();
         referencia = database.getReference("Ejercicios").child(ejercicio);
 
-        LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database,referencia, recycler);
-        tarea.execute();
+        if(ejercicio.equals("Todos")) {
+            referencia = database.getReference("Ejercicios");
+            LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
+            tarea.execute();
+        } else {
+            LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
+            tarea.execute();
+        }
     }
 
     // Accion volver atras.
