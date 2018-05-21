@@ -237,6 +237,6 @@ public class Principal extends AppCompatActivity
 
     @Override
     public void onDataDialogoInicio(String s) {
-        
+
     }
 }
