@@ -229,5 +229,8 @@ public class Principal extends AppCompatActivity
     @Override
     public void onTipoSelected(Ejercicios ej) {
         Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(Principal.this, TipoEjercicio.class);
+        i.putExtra("TipoEjercicio", ej.getNombre());
+        startActivity(i);
     }
 }

@@ -26,21 +26,29 @@
             android:name=".CreateAccount"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".ForgotPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".Principal"
             android:label="@string/title_activity_principal"
             android:theme="@style/NoAppTheme"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
-            android:name=".ActividadFragmentos"
+            android:name=".TipoEjercicio"
             android:label="@string/title_activity_actividad_fragmentos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            
+        </activity>
     </application>
 
 </manifest>

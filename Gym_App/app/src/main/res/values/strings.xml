@@ -48,7 +48,7 @@
 
     <string name="error_email">Error al enviar el email</string>
     <string name="email_enviado">Email enviado</string>
-    <string name="title_activity_actividad_fragmentos">ActividadFragmentos</string>
+    <string name="title_activity_actividad_fragmentos"></string>
 
 
 </resources>

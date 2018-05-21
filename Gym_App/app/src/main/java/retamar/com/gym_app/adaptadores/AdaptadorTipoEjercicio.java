@@ -20,11 +20,11 @@ import retamar.com.gym_app.utils.Ejercicios;
 public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEjercicio.MyHolder> {
 
     Context contexto;
-    ArrayList<Ejercicios> ejercicios;
+    List<Ejercicios> ejercicios;
     View v;
     OnListaCheckListener listener;
 
-    public AdaptadorTipoEjercicio(Context contexto, ArrayList<Ejercicios> ejercicios) {
+    public AdaptadorTipoEjercicio(Context contexto, List<Ejercicios> ejercicios) {
         this.contexto = contexto;
         this.ejercicios = ejercicios;
         listener = (OnListaCheckListener) contexto;
@@ -65,8 +65,8 @@ public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEj
         public MyHolder(View itemView) {
             super(itemView);
 
-            imagen = itemView.findViewById(R.id.imagen_lista);
-            nombre = itemView.findViewById(R.id.nombre_ejercicio);
+            imagen = itemView.findViewById(R.id.imagen_tipo_ejercicio);
+            nombre = itemView.findViewById(R.id.nombre_tipo_ejercicio);
         }
     }
 
