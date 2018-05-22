@@ -59,40 +59,6 @@ public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEj
         return ejercicios.size();
     }
 
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                   ejerciciosFilter = ejercicios;
-                } else {
-                    List<Ejercicios> listaFiltrada = new ArrayList<>();
-                    for (Ejercicios row : ejercicios) {
-
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
-                        if (row.getNombre().toLowerCase().contains(charString.toLowerCase())) {
-                            listaFiltrada.add(row);
-                        }
-                    }
-
-                    ejerciciosFilter = listaFiltrada;
-                }
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = ejerciciosFilter;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                ejerciciosFilter = (List<Ejercicios>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-
     class MyHolder extends RecyclerView.ViewHolder {
 
         ImageView imagen;

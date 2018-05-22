@@ -11,6 +11,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +50,7 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
         setContentView(R.layout.activity_tipo_ejercicio);
         configurarToolbar();
         instancias();
-        //rellenarLista();
+        rellenarLista();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +60,6 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
                         .setAction("Action", null).show();
             }
         });*/
-    }
-
-    @Override
-    protected void onStart() {
-        //rellenarLista();
-        super.onStart();
     }
 
     private void configurarToolbar() {
@@ -88,15 +83,17 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
     private void rellenarLista() {
 
         database = FirebaseDatabase.getInstance();
-        referencia = database.getReference("Ejercicios").child(ejercicio);
+        if(ejercicio != null) {
+            referencia = database.getReference("Ejercicios").child(ejercicio);
 
-        if(ejercicio.equals("Todos")) {
-            referencia = database.getReference("Ejercicios");
-            LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
-            tarea.execute();
-        } else {
-            LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
-            tarea.execute();
+            if (ejercicio.equals("Todos")) {
+                referencia = database.getReference("Ejercicios");
+                LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
+                tarea.execute();
+            } else {
+                LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
+                tarea.execute();
+            }
         }
     }
 
@@ -108,23 +105,7 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
-        searchView.setSearchableInfo(searchManager
-                .getSearchableInfo(getComponentName()));
-        searchView.setMaxWidth(Integer.MAX_VALUE);
 
-        /*searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adaptador.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adaptador.getFilter().filter(newText);
-                return false;
-            }
-        });*/
         return true;
     }
 

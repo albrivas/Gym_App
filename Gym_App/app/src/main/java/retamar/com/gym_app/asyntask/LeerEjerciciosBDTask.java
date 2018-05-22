@@ -29,6 +29,7 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
     DatabaseReference referencia;
     RecyclerView recycler;
 
+
     public LeerEjerciciosBDTask(Context contexto, FirebaseDatabase database, DatabaseReference referencia, RecyclerView recycler) {
         this.contexto = contexto;
         this.database = database;
@@ -47,8 +48,8 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // Doble bucle foreach para recorrer un hijo que tiene otro hijo y obtener los datos
-                    for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                       for (DataSnapshot snapshot2:snapshot.getChildren()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        for (DataSnapshot snapshot2 : snapshot.getChildren()) {
                             Ejercicios ej = snapshot2.getValue(Ejercicios.class);
                             ejercicios.add(ej);
                             adaptador.notifyDataSetChanged();
@@ -62,28 +63,17 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
                 }
             });
         }
+
         else {
 
-            referencia.addChildEventListener(new ChildEventListener() {
+            referencia.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    ejercicios.add(dataSnapshot.getValue(Ejercicios.class));
-                    adaptador.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Ejercicios ej = snapshot.getValue(Ejercicios.class);
+                            ejercicios.add(ej);
+                            adaptador.notifyDataSetChanged();
+                    }
                 }
 
                 @Override
@@ -96,8 +86,6 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
         recycler.setAdapter(adaptador);
         recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));
         recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
-
-
 
         return null;
 
