@@ -1,6 +1,8 @@
 package retamar.com.gym_app.fragmentos;
 
 
-public class FragmentoPerfil {
+import android.support.v4.app.Fragment;
+
+public class FragmentoPerfil extends Fragment {
     
 }
