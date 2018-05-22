@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +20,11 @@ import retamar.com.gym_app.utils.Ejercicios;
 
 public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEjercicio.MyHolder> {
 
-    Context contexto;
-    List<Ejercicios> ejercicios;
-    View v;
-    OnListaCheckListener listener;
+    private Context contexto;
+    private List<Ejercicios> ejercicios;
+    private List<Ejercicios>ejerciciosFilter;
+    private View v;
+    private OnListaCheckListener listener;
 
     public AdaptadorTipoEjercicio(Context contexto, List<Ejercicios> ejercicios) {
         this.contexto = contexto;
@@ -55,6 +57,38 @@ public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEj
     @Override
     public int getItemCount() {
         return ejercicios.size();
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                   ejerciciosFilter = ejercicios;
+                } else {
+                    List<Ejercicios> listaFiltrada = new ArrayList<>();
+                    for (Ejercicios row : ejercicios) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getNombre().toLowerCase().contains(charString.toLowerCase())) {
+                            listaFiltrada.add(row);
+                        }
+                    }
+
+                    ejerciciosFilter = listaFiltrada;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = ejerciciosFilter;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+            }
+        };
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
