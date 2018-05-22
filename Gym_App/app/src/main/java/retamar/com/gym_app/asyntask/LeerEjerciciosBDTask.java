@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -95,6 +96,11 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
         recycler.setAdapter(adaptador);
         recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));
         recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
+
+
+
         return null;
+
+
     }
 }

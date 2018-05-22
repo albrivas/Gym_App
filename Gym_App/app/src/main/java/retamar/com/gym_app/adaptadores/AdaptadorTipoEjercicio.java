@@ -86,10 +86,12 @@ public class AdaptadorTipoEjercicio extends RecyclerView.Adapter<AdaptadorTipoEj
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
+                ejerciciosFilter = (List<Ejercicios>) filterResults.values;
+                notifyDataSetChanged();
             }
         };
     }
+
 
     class MyHolder extends RecyclerView.ViewHolder {
 

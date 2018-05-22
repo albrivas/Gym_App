@@ -49,7 +49,7 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
         setContentView(R.layout.activity_tipo_ejercicio);
         configurarToolbar();
         instancias();
-        rellenarLista();
+        //rellenarLista();
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +59,12 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
                         .setAction("Action", null).show();
             }
         });*/
+    }
+
+    @Override
+    protected void onStart() {
+        //rellenarLista();
+        super.onStart();
     }
 
     private void configurarToolbar() {
@@ -106,6 +112,19 @@ public class TipoEjercicio extends AppCompatActivity implements AdaptadorTipoEje
                 .getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
+        /*searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adaptador.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adaptador.getFilter().filter(newText);
+                return false;
+            }
+        });*/
         return true;
     }
 
