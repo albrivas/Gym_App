@@ -10,12 +10,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LeerUsuarioBD extends AsyncTask<Void,Void,Void> {
+public class LeerUsuarioBDTask extends AsyncTask<Void,Void,Void> {
 
     FirebaseAuth mAuth;
     TextView nombre;
 
-    public LeerUsuarioBD(FirebaseAuth mAuth, TextView nombre) {
+    public LeerUsuarioBDTask(FirebaseAuth mAuth, TextView nombre) {
         this.mAuth = mAuth;
         this.nombre = nombre;
     }

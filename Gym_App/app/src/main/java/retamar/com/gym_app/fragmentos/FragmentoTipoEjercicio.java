@@ -24,7 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import retamar.com.gym_app.R;
-import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
+import retamar.com.gym_app.adaptadores.EjerciciosHolder;
+import retamar.com.gym_app.adaptadores.FirebaseAdapter;
+import retamar.com.gym_app.adaptadores.FirebaseAdapterTipo;
+import retamar.com.gym_app.adaptadores.TipoEjercicioHolder;
 import retamar.com.gym_app.utils.Ejercicios;
 
 public class FragmentoTipoEjercicio extends Fragment {
@@ -33,7 +36,6 @@ public class FragmentoTipoEjercicio extends Fragment {
     Context contexto;
     View v;
     List<Ejercicios> ejercicios;
-    AdaptadorRecycler_Lista adaptadorRecycler_lista;
 
     FirebaseDatabase database;
     DatabaseReference referencia;
@@ -64,43 +66,12 @@ public class FragmentoTipoEjercicio extends Fragment {
         database = FirebaseDatabase.getInstance();
         referencia = database.getReference("Tipo Ejercicios");
 
-        ejercicios = new ArrayList<>();
+        FirebaseAdapterTipo adaptadorFirebase = new FirebaseAdapterTipo(Ejercicios.class,R.layout.item_tipo_ejercicio
+                ,TipoEjercicioHolder.class,referencia,contexto);
 
-        final AdaptadorRecycler_Lista adaptador = new AdaptadorRecycler_Lista(contexto, ejercicios);
-
-        referencia.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ejercicios.add(dataSnapshot.getValue(Ejercicios.class));
-                adaptador.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        recycler.setAdapter(adaptador);
+        recycler.setAdapter(adaptadorFirebase);
         recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));
         recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
-        /*recycler.setLayoutManager(new GridLayoutManager(contexto,2,
-                LinearLayoutManager.VERTICAL,false));*/
     }
 
     private void instancias() {

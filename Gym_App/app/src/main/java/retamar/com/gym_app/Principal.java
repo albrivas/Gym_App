@@ -1,18 +1,11 @@
 package retamar.com.gym_app;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.text.Html;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,10 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -33,28 +23,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
-import retamar.com.gym_app.asyntask.LeerUsuarioBD;
+import retamar.com.gym_app.adaptadores.FirebaseAdapter;
+import retamar.com.gym_app.asyntask.LeerUsuarioBDTask;
 import retamar.com.gym_app.dialogos.DialogoInicio;
-import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
 import retamar.com.gym_app.utils.Ejercicios;
 import retamar.com.gym_app.utils.Modelo;
-import retamar.com.gym_app.utils.Usuario;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        AdaptadorRecycler_Lista.OnTipoSelectedListener, DialogoInicio.OnDialogoInicio {
+        DialogoInicio.OnDialogoInicio, FirebaseAdapter.OnTipoSelectedListener {
 
     Modelo modelo;
 
@@ -117,8 +97,8 @@ public class Principal extends AppCompatActivity
                 Glide.with(Principal.this).load(user.getPhotoUrl()).into(imagenUsuario);
             }
             if(user.getDisplayName() == null || user.getDisplayName().equals("")) {
-                LeerUsuarioBD leerUsuarioBD = new LeerUsuarioBD(mAuth, nombreUsuario);
-                leerUsuarioBD.execute();
+                LeerUsuarioBDTask leerUsuarioBDTask = new LeerUsuarioBDTask(mAuth, nombreUsuario);
+                leerUsuarioBDTask.execute();
             }
             else {
                 Glide.with(Principal.this).load(R.drawable.profile).into(imagenUsuario);

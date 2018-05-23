@@ -47,6 +47,7 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
             referencia.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
                     // Doble bucle foreach para recorrer un hijo que tiene otro hijo y obtener los datos
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         for (DataSnapshot snapshot2 : snapshot.getChildren()) {

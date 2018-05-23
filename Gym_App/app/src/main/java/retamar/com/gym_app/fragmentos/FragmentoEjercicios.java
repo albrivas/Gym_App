@@ -31,7 +31,8 @@ import java.util.List;
 import java.util.Objects;
 
 import retamar.com.gym_app.R;
-import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
+import retamar.com.gym_app.adaptadores.EjerciciosHolder;
+import retamar.com.gym_app.adaptadores.FirebaseAdapter;
 import retamar.com.gym_app.utils.Ejercicios;
 
 
@@ -40,13 +41,9 @@ public class FragmentoEjercicios extends Fragment {
     RecyclerView recycler;
     Context contexto;
     View v;
-    List<Ejercicios> ejercicios;
-    AdaptadorRecycler_Lista adaptadorRecycler_lista;
 
     FirebaseDatabase database;
     DatabaseReference referencia;
-    SwipeRefreshLayout refreshLayout;
-
 
     @Override
     public void onAttach(Context context) {
@@ -72,41 +69,11 @@ public class FragmentoEjercicios extends Fragment {
         database = FirebaseDatabase.getInstance();
         referencia = database.getReference("Tipo Ejercicios");
 
-        ejercicios = new ArrayList<>();
 
-        final AdaptadorRecycler_Lista adaptador = new AdaptadorRecycler_Lista(contexto, ejercicios);
+        FirebaseAdapter adaptadorFirebase = new FirebaseAdapter(Ejercicios.class,R.layout.item_lista_ejercicios
+                ,EjerciciosHolder.class,referencia,contexto);
 
-        referencia.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ejercicios.add(dataSnapshot.getValue(Ejercicios.class));
-                adaptador.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        recycler.setAdapter(adaptador);
-        //recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));
-        //recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.));
+        recycler.setAdapter(adaptadorFirebase);
         recycler.setLayoutManager(new GridLayoutManager(contexto,2,
                 LinearLayoutManager.VERTICAL,false));
     }
