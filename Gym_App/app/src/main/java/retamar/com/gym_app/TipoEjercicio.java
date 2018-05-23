@@ -149,10 +149,17 @@ public class TipoEjercicio extends AppCompatActivity implements
         switch (item.getItemId()) {
             case R.id.action_search:
                 break;
+
+                // Boton de cerrar searchview. Al pulsarlo volvemos a rellenar la lista
+            case R.id.search_close_btn:
+                rellenarLista();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     // Accion volver atras.
     @Override
