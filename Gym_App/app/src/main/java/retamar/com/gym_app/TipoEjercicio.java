@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,12 +44,7 @@ public class TipoEjercicio extends AppCompatActivity implements
         setContentView(R.layout.activity_tipo_ejercicio);
         configurarToolbar();
         instancias();
-    }
-
-    @Override
-    protected void onStart() {
         rellenarLista();
-        super.onStart();
     }
 
     private void configurarToolbar() {
@@ -117,6 +113,15 @@ public class TipoEjercicio extends AppCompatActivity implements
             }
         });
 
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                rellenarLista();
+                return false;
+            }
+        });
+
+
         return true;
     }
 
@@ -138,7 +143,7 @@ public class TipoEjercicio extends AppCompatActivity implements
             }
 
         };
-        
+
         recycler.setAdapter(firebaseRecyclerAdapter);
     }
 
@@ -146,16 +151,21 @@ public class TipoEjercicio extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
+                Toast.makeText(this, "cerrar pulsado", Toast.LENGTH_LONG).show();
                 break;
 
                 // Boton de cerrar searchview. Al pulsarlo volvemos a rellenar la lista
             case R.id.search_close_btn:
+                Toast.makeText(this, "cerrar pulsado", Toast.LENGTH_LONG).show();
                 rellenarLista();
                 break;
+
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
 
 
