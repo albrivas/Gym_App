@@ -138,9 +138,7 @@ public class TipoEjercicio extends AppCompatActivity implements
             }
 
         };
-
-
-
+        
         recycler.setAdapter(firebaseRecyclerAdapter);
     }
 
