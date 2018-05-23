@@ -136,7 +136,10 @@ public class TipoEjercicio extends AppCompatActivity implements
 
                 viewHolder.setDetails(getApplicationContext(), model.getNombre(), model.getImagen());
             }
+
         };
+
+
 
         recycler.setAdapter(firebaseRecyclerAdapter);
     }

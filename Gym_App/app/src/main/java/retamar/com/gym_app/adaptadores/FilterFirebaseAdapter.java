@@ -37,6 +37,4 @@ public class FilterFirebaseAdapter extends FirebaseRecyclerAdapter<Ejercicios, T
     public interface OnFilterEjercicioSelectedListener {
         public void onFilterEjercicioSelected(Ejercicios ej);
     }
-
-
 }
