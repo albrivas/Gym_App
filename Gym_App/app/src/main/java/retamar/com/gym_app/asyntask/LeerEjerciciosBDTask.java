@@ -79,7 +79,7 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    adaptador.notifyDataSetChanged();
                 }
             });
         }

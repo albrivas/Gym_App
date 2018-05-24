@@ -51,6 +51,7 @@
     <string name="title_activity_actividad_fragmentos"></string>
     <string name="search_hint">Buscar por nombre</string>
     <string name="action_search">Buscar</string>
+    <string name="title_activity_descripcion_ejercicio">DescripcionEjercicio</string>
 
 
 </resources>

@@ -2,6 +2,7 @@ package retamar.com.gym_app;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -76,7 +77,10 @@ public class TipoEjercicio extends AppCompatActivity implements
             if (ejercicio.equals("Todos")) {
                 referencia = database.getReference("Ejercicios");
                 LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
+                tarea.cancel(true);
                 tarea.execute();
+
+
 
             } else {
                 FirebaseAdapterTipo adaptadorFirebase = new FirebaseAdapterTipo(Ejercicios.class,R.layout.item_tipo_ejercicio
@@ -147,28 +151,6 @@ public class TipoEjercicio extends AppCompatActivity implements
         recycler.setAdapter(firebaseRecyclerAdapter);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                Toast.makeText(this, "cerrar pulsado", Toast.LENGTH_LONG).show();
-                break;
-
-                // Boton de cerrar searchview. Al pulsarlo volvemos a rellenar la lista
-            case R.id.search_close_btn:
-                Toast.makeText(this, "cerrar pulsado", Toast.LENGTH_LONG).show();
-                rellenarLista();
-                break;
-
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
     // Accion volver atras.
     @Override
     public boolean onSupportNavigateUp() {
@@ -178,7 +160,7 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     @Override
     public void onEjercicioSelected(Ejercicios ej) {
-        Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ej.getCategoria(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
