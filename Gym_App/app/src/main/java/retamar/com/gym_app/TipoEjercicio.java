@@ -2,6 +2,7 @@ package retamar.com.gym_app;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +35,7 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     RecyclerView recycler;
     String ejercicio;
-
+    static String TAG_EJERCICIO = "Todos";
     FirebaseDatabase database;
     DatabaseReference referencia;
     android.support.v7.widget.SearchView searchView;
@@ -160,7 +161,13 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     @Override
     public void onEjercicioSelected(Ejercicios ej) {
-        Toast.makeText(this, ej.getCategoria(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ej.getDescripcion() + "onEjercicioSeleted", Toast.LENGTH_SHORT).show();
+        TAG_EJERCICIO = ej.getNombre();
+
+        Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
+        i.putExtra(TAG_EJERCICIO, ej);
+        startActivity(i);
+
     }
 
     @Override

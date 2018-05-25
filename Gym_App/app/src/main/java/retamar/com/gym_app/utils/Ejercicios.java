@@ -2,7 +2,7 @@ package retamar.com.gym_app.utils;
 
 import java.io.Serializable;
 
-public class Ejercicios {
+public class Ejercicios implements Serializable {
 
     String nombre, imagen, video, descripcion, categoria;
 
@@ -18,6 +18,14 @@ public class Ejercicios {
     public Ejercicios(String nombre, String imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
+    }
+
+    public Ejercicios(String nombre, String imagen, String video, String descripcion, String categoria) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.video = video;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
     }
 
     public String getNombre() {

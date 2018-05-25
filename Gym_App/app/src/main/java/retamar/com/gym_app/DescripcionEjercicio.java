@@ -6,20 +6,24 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import java.io.Serializable;
 import java.util.Objects;
+
+import retamar.com.gym_app.utils.Ejercicios;
 
 public class DescripcionEjercicio extends YouTubeBaseActivity {
 
-    static String TAG_EJERCICIO = "Todos";
-    String ejercicio;
-
+    Ejercicios ejercicio;
     YouTubePlayerView youTubePlayerView;
     YouTubePlayer.OnInitializedListener listener;
+    TextView descripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +31,19 @@ public class DescripcionEjercicio extends YouTubeBaseActivity {
         setContentView(R.layout.activity_descripcion_ejercicio);
         instancias();
         configurarToolbar();
+        rellenar();
+    }
 
+    private void rellenar() {
+        if(ejercicio != null) {
+            descripcion.setText(ejercicio.getDescripcion());
+            Toast.makeText(this, ejercicio.getDescripcion(), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void instancias() {
-        ejercicio = Objects.requireNonNull(getIntent().getExtras()).getString(Principal.TAG_EJERCICIO);
+        ejercicio = (Ejercicios) getIntent().getExtras().getSerializable(TipoEjercicio.TAG_EJERCICIO);
+        descripcion = findViewById(R.id.descripcion);
     }
 
     private void configurarToolbar() {
