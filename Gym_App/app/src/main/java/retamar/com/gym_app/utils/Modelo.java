@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -25,8 +26,8 @@ import retamar.com.gym_app.R;
 
 public class Modelo {
 
-    android.app.AlertDialog alertDialog;
-    ProgressDialog progressDialog;
+    private android.app.AlertDialog alertDialog;
+    private ProgressDialog progressDialog;
 
     //COMPROBAR CONEXION INTERNET
     public boolean compruebaConexion(Context context) {
@@ -48,7 +49,9 @@ public class Modelo {
     }
 
     public void activityTransparent(AppCompatActivity activity) {
-        activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
     }
 
     public void showDialog(Context contexto) {

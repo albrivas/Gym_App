@@ -78,7 +78,6 @@ public class TipoEjercicio extends AppCompatActivity implements
             if (ejercicio.equals("Todos")) {
                 referencia = database.getReference("Ejercicios");
                 LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
-                tarea.cancel(true);
                 tarea.execute();
 
 
@@ -167,16 +166,27 @@ public class TipoEjercicio extends AppCompatActivity implements
         Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
         i.putExtra(TAG_EJERCICIO, ej);
         startActivity(i);
-
     }
 
     @Override
     public void onFilterEjercicioSelected(Ejercicios ej) {
         Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+
+        TAG_EJERCICIO = ej.getNombre();
+
+        Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
+        i.putExtra(TAG_EJERCICIO, ej);
+        startActivity(i);
     }
 
     @Override
     public void onListaCheck(Ejercicios ej) {
-        Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+
+        TAG_EJERCICIO = ej.getNombre();
+
+        Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
+        i.putExtra(TAG_EJERCICIO, ej);
+        startActivity(i);
     }
 }

@@ -129,7 +129,7 @@ public class Principal extends AppCompatActivity
         viewPager.setAdapter(adapter);
         tableLayout.setupWithViewPager(viewPager);
 
-         int[] imageResId = {
+         /*int[] imageResId = {
                  R.drawable.lista,
                  R.drawable.ejercicios,
                  R.drawable.ejercicios,
@@ -137,7 +137,7 @@ public class Principal extends AppCompatActivity
 
         for (int i = 0; i < imageResId.length; i++) {
             tableLayout.getTabAt(i).setIcon(imageResId[i]);
-        }
+        }*/
     }
 
     private void configurarToolbar() {

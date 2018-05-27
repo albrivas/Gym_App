@@ -11,7 +11,7 @@ import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
 
 public class AdaptadorViewPager extends FragmentPagerAdapter {
 
-    private final static int NUM_VIEWS = 4;
+    private final static int NUM_VIEWS = 3;
 
      private Context contexto;
 
@@ -30,8 +30,6 @@ public class AdaptadorViewPager extends FragmentPagerAdapter {
                 return  new FragmentoEjercicios();
             case 2:
                 return  new FragmentoEjercicios();
-            case 3:
-                return  new FragmentoEjercicios();
 
                 default:
                     return null;
@@ -46,20 +44,16 @@ public class AdaptadorViewPager extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-       /* switch (position) {
+       switch (position) {
             case 0:
-                return contexto.getResources().getDrawable(R.drawable.ejercicios);
+                return contexto.getString(R.string.fragmento_ejercicios);
             case 1:
                 return contexto.getString(R.string.fragmento_actividad);
             case 2:
-                return contexto.getString(R.string.fragmento_semana);
-            case 3:
                 return contexto.getString(R.string.fragmento_perfil);
 
                 default:
                     return null;
-        }*/
-
-       return null;
+        }
     }
 }
