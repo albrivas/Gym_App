@@ -26,21 +26,28 @@
             android:name=".CreateAccount"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".ForgotPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".Principal"
             android:label="@string/title_activity_principal"
             android:theme="@style/NoAppTheme"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".TipoEjercicio"
-            android:label="@string/title_activity_actividad_fragmentos"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/NoAppTheme">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -51,8 +58,10 @@
         </activity>
         <activity
             android:name=".DescripcionEjercicio"
-            android:label="@string/title_activity_descripcion_ejercicio"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/NoAppTheme">
+
+        </activity>
     </application>
 
 </manifest>
