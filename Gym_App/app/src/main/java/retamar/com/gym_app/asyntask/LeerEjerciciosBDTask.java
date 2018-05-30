@@ -65,25 +65,6 @@ public class LeerEjerciciosBDTask extends AsyncTask<Void, Void, Void> {
             });
         }
 
-        else {
-
-            referencia.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Ejercicios ej = snapshot.getValue(Ejercicios.class);
-                            ejercicios.add(ej);
-                            adaptador.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    adaptador.notifyDataSetChanged();
-                }
-            });
-        }
-
         recycler.setAdapter(adaptador);
         recycler.setLayoutManager(new LinearLayoutManager(contexto, LinearLayoutManager.VERTICAL, false));
         recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
