@@ -1,4 +1,4 @@
-package retamar.com.gym_app;
+package retamar.com.gym_app.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -21,6 +21,7 @@ import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
+import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.FirebaseAdapterTipo;
 import retamar.com.gym_app.adaptadores.FilterFirebaseAdapter;
 import retamar.com.gym_app.adaptadores.TipoEjercicioHolder;

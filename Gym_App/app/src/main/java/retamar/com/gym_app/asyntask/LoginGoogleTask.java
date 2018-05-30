@@ -1,6 +1,5 @@
 package retamar.com.gym_app.asyntask;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,8 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import retamar.com.gym_app.Login;
-import retamar.com.gym_app.Principal;
+import retamar.com.gym_app.activities.Principal;
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.utils.Usuario;
 

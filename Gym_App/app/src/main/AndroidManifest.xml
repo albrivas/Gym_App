@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
         <activity
-            android:name=".Login"
+            android:name=".activities.Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
             android:windowSoftInputMode="stateHidden"> <!-- Ocultar teclado al iniciar la actividad -->
@@ -23,21 +23,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateAccount"
+            android:name=".activities.CreateAccount"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
             android:windowSoftInputMode="stateHidden">
 
         </activity>
         <activity
-            android:name=".ForgotPassword"
+            android:name=".activities.ForgotPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
             android:windowSoftInputMode="stateHidden">
 
         </activity>
         <activity
-            android:name=".Principal"
+            android:name=".activities.Principal"
             android:label="@string/title_activity_principal"
             android:theme="@style/NoAppTheme"
             android:screenOrientation="portrait"
@@ -45,7 +45,7 @@
 
         </activity>
         <activity
-            android:name=".TipoEjercicio"
+            android:name=".activities.TipoEjercicio"
             android:screenOrientation="portrait"
             android:theme="@style/NoAppTheme">
             <meta-data
@@ -57,7 +57,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DescripcionEjercicio"
+            android:name=".activities.DescripcionEjercicio"
             android:screenOrientation="portrait"
             android:theme="@style/NoAppTheme">
 

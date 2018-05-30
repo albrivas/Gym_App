@@ -1,25 +1,16 @@
-package retamar.com.gym_app;
+package retamar.com.gym_app.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 import retamar.com.gym_app.API.YoutubeConfig;
+import retamar.com.gym_app.R;
 import retamar.com.gym_app.utils.Ejercicios;
 
 public class DescripcionEjercicio extends AppCompatActivity {

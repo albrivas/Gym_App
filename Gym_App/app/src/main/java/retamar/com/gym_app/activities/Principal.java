@@ -1,4 +1,4 @@
-package retamar.com.gym_app;
+package retamar.com.gym_app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.adaptadores.FirebaseAdapter;
 import retamar.com.gym_app.asyntask.LeerUsuarioTask;

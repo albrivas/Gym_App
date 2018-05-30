@@ -1,7 +1,6 @@
-package retamar.com.gym_app;
+package retamar.com.gym_app.activities;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -11,10 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import retamar.com.gym_app.R;
 import retamar.com.gym_app.asyntask.ForgotPasswordTask;
 import retamar.com.gym_app.utils.Modelo;
 
