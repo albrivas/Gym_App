@@ -11,13 +11,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -76,11 +80,11 @@ public class TipoEjercicio extends AppCompatActivity implements
             referencia = database.getReference("Ejercicios").child(ejercicio);
 
             if (ejercicio.equals("Todos")) {
+
                 referencia = database.getReference("Ejercicios");
+
                 LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
                 tarea.execute();
-
-
 
             } else {
                 FirebaseAdapterTipo adaptadorFirebase = new FirebaseAdapterTipo(Ejercicios.class,R.layout.item_tipo_ejercicio
@@ -100,53 +104,49 @@ public class TipoEjercicio extends AppCompatActivity implements
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
-        //searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        //searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(newText);
                 return false;
             }
         });
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        /*searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                rellenarLista();
+                //rellenarLista();
                 return false;
             }
-        });
+        });*/
 
 
         return true;
     }
 
     private void FirebaseSearch(String searhText) {
-        Query firebaseSearchQuery = referencia.orderByChild("nombre").startAt(searhText).endAt(searhText + "\uf8ff");
+        final Query firebaseSearchQuery = referencia.orderByChild("nombre").startAt(searhText).endAt(searhText + "\uf8ff");
+        //Query query = referencia.orderByChild("categoria").equalTo("Abdominales");
 
-        FilterFirebaseAdapter firebaseRecyclerAdapter = new FilterFirebaseAdapter(
+        final FilterFirebaseAdapter firebaseRecyclerAdapter = new FilterFirebaseAdapter(
 
                 Ejercicios.class,
                 R.layout.item_tipo_ejercicio,
                 TipoEjercicioHolder.class,
                 firebaseSearchQuery, this
 
-        ) {
-            @Override
-            protected void populateViewHolder(TipoEjercicioHolder viewHolder, Ejercicios model, int position) {
-
-                viewHolder.setDetails(getApplicationContext(), model.getNombre(), model.getImagen());
-            }
-
-        };
+        );
 
         recycler.setAdapter(firebaseRecyclerAdapter);
     }
@@ -170,7 +170,7 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     @Override
     public void onFilterEjercicioSelected(Ejercicios ej) {
-        Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
 
         TAG_EJERCICIO = ej.getNombre();
 

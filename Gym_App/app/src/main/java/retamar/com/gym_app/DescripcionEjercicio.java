@@ -58,7 +58,7 @@ public class DescripcionEjercicio extends AppCompatActivity {
 
     private void rellenar() {
         if(ejercicio != null) {
-            descripcion.setText(ejercicio.getNombre());
+            descripcion.setText(ejercicio.getDescripcion());
         }
     }
 
