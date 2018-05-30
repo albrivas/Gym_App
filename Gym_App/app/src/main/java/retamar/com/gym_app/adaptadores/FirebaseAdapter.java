@@ -36,6 +36,7 @@ public class FirebaseAdapter extends FirebaseRecyclerAdapter<Ejercicios, Ejercic
                 listener.onTipoSelected(model);
             }
         });
+        viewHolder.numero.setText(String.valueOf(model.getNumero()));
     }
 
     public interface OnTipoSelectedListener {
