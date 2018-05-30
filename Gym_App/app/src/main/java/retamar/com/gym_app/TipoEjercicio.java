@@ -110,12 +110,14 @@ public class TipoEjercicio extends AppCompatActivity implements
         searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(newText);
                 return false;
             }
@@ -135,6 +137,7 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     private void FirebaseSearch(String searhText) {
         final Query firebaseSearchQuery = referencia.orderByChild("nombre").startAt(searhText).endAt(searhText + "\uf8ff");
+        //Query query = referencia.orderByChild("categoria").equalTo("Abdominales");
 
         final FilterFirebaseAdapter firebaseRecyclerAdapter = new FilterFirebaseAdapter(
 
