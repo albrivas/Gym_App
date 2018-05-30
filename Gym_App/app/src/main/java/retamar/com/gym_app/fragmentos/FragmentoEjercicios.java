@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class FragmentoEjercicios extends Fragment {
     RecyclerView recycler;
     Context contexto;
     View v;
+    static String TAG_REFERENCIA = "Tipo Ejercicios";
 
     FirebaseDatabase database;
     DatabaseReference referencia;
@@ -66,19 +68,25 @@ public class FragmentoEjercicios extends Fragment {
     }
 
     private void rellenarLista() {
-        database = FirebaseDatabase.getInstance();
-        referencia = database.getReference("Tipo Ejercicios");
 
-
-        FirebaseAdapter adaptadorFirebase = new FirebaseAdapter(Ejercicios.class,R.layout.item_lista_ejercicios
-                ,EjerciciosHolder.class,referencia,contexto);
+        FirebaseAdapter adaptadorFirebase = new FirebaseAdapter(
+                Ejercicios.class,
+                R.layout.item_lista_ejercicios
+                ,EjerciciosHolder.class,
+                referencia,
+                contexto);
 
         recycler.setAdapter(adaptadorFirebase);
-        recycler.setLayoutManager(new GridLayoutManager(contexto,2,
-                LinearLayoutManager.VERTICAL,false));
+        recycler.setLayoutManager(new GridLayoutManager(
+                contexto,
+                2,
+                LinearLayoutManager.VERTICAL,
+                false));
     }
 
     private void instancias() {
         recycler = v.findViewById(R.id.lista_recycler);
+        database = FirebaseDatabase.getInstance();
+        referencia = database.getReference(TAG_REFERENCIA);
     }
 }

@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.adaptadores.FirebaseAdapter;
-import retamar.com.gym_app.asyntask.LeerUsuarioBDTask;
+import retamar.com.gym_app.asyntask.LeerUsuarioTask;
 import retamar.com.gym_app.dialogos.DialogoInicio;
 import retamar.com.gym_app.utils.Ejercicios;
 import retamar.com.gym_app.utils.Modelo;
@@ -97,8 +97,8 @@ public class Principal extends AppCompatActivity
                 Glide.with(Principal.this).load(user.getPhotoUrl()).into(imagenUsuario);
             }
             if(user.getDisplayName() == null || user.getDisplayName().equals("")) {
-                LeerUsuarioBDTask leerUsuarioBDTask = new LeerUsuarioBDTask(mAuth, nombreUsuario);
-                leerUsuarioBDTask.execute();
+                LeerUsuarioTask leerUsuarioTask = new LeerUsuarioTask(mAuth, nombreUsuario);
+                leerUsuarioTask.execute();
             }
             else {
                 Glide.with(Principal.this).load(R.drawable.profile).into(imagenUsuario);

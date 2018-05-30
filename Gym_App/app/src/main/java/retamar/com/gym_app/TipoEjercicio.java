@@ -3,43 +3,38 @@ package retamar.com.gym_app;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import android.support.v7.widget.Toolbar;
+
+import android.view.Menu;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.Objects;
 
-import retamar.com.gym_app.adaptadores.AdaptadorTipoEjercicio;
 import retamar.com.gym_app.adaptadores.FirebaseAdapterTipo;
 import retamar.com.gym_app.adaptadores.FilterFirebaseAdapter;
 import retamar.com.gym_app.adaptadores.TipoEjercicioHolder;
-import retamar.com.gym_app.asyntask.LeerEjerciciosBDTask;
+
 import retamar.com.gym_app.utils.Ejercicios;
 
 public class TipoEjercicio extends AppCompatActivity implements
         FirebaseAdapterTipo.OnEjercicioSelectedListener,
-        FilterFirebaseAdapter.OnFilterEjercicioSelectedListener,
-        AdaptadorTipoEjercicio.OnListaCheckListener{
+        FilterFirebaseAdapter.OnFilterEjercicioSelectedListener {
 
     RecyclerView recycler;
     String ejercicio;
     static String TAG_EJERCICIO = "Todos";
+    static String TAG_REFERENCIA = "Ejercicios2";
     FirebaseDatabase database;
     DatabaseReference referencia;
     android.support.v7.widget.SearchView searchView;
@@ -69,31 +64,50 @@ public class TipoEjercicio extends AppCompatActivity implements
     private void instancias() {
         recycler = findViewById(R.id.recycler_tipo_ejercicio);
         ejercicio = Objects.requireNonNull(getIntent().getExtras()).getString(Principal.TAG_EJERCICIO);
+        database = FirebaseDatabase.getInstance();
+        referencia = database.getReference(TAG_REFERENCIA);
     }
 
     private void rellenarLista() {
 
-        database = FirebaseDatabase.getInstance();
+        final FilterFirebaseAdapter firebaseRecyclerAdapter;
+        Query query;
 
         if(ejercicio != null) {
 
-            referencia = database.getReference("Ejercicios").child(ejercicio);
+             switch (ejercicio) {
+                 case "Todos":
 
-            if (ejercicio.equals("Todos")) {
+                     query = referencia.orderByChild("nombre");
+                     firebaseRecyclerAdapter = new FilterFirebaseAdapter(
 
-                referencia = database.getReference("Ejercicios");
+                             Ejercicios.class,
+                             R.layout.item_tipo_ejercicio,
+                             TipoEjercicioHolder.class,
+                             query, this
+                     );
 
-                LeerEjerciciosBDTask tarea = new LeerEjerciciosBDTask(this, database, referencia, recycler);
-                tarea.execute();
+                     break;
 
-            } else {
-                FirebaseAdapterTipo adaptadorFirebase = new FirebaseAdapterTipo(Ejercicios.class,R.layout.item_tipo_ejercicio
-                        ,TipoEjercicioHolder.class,referencia,this);
+                     default:
 
-                recycler.setAdapter(adaptadorFirebase);
-                recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-            }
+                         query = referencia.orderByChild("categoria").equalTo(ejercicio);
+
+                         firebaseRecyclerAdapter = new FilterFirebaseAdapter(
+
+                                 Ejercicios.class,
+                                 R.layout.item_tipo_ejercicio,
+                                 TipoEjercicioHolder.class,
+                                 query, this
+
+                         );
+
+                         break;
+             }
+
+            recycler.setAdapter(firebaseRecyclerAdapter);
+            recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            recycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         }
     }
 
@@ -110,14 +124,12 @@ public class TipoEjercicio extends AppCompatActivity implements
         searchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //referencia = database.getReference("Ejercicios2");
                 FirebaseSearch(newText);
                 return false;
             }
@@ -160,7 +172,6 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     @Override
     public void onEjercicioSelected(Ejercicios ej) {
-        //Toast.makeText(this, ej.getDescripcion() + "onEjercicioSeleted", Toast.LENGTH_SHORT).show();
         TAG_EJERCICIO = ej.getNombre();
 
         Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
@@ -170,19 +181,6 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     @Override
     public void onFilterEjercicioSelected(Ejercicios ej) {
-        //Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
-
-        TAG_EJERCICIO = ej.getNombre();
-
-        Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
-        i.putExtra(TAG_EJERCICIO, ej);
-        startActivity(i);
-    }
-
-    @Override
-    public void onListaCheck(Ejercicios ej) {
-        //Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
-
         TAG_EJERCICIO = ej.getNombre();
 
         Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
