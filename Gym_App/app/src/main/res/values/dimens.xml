@@ -24,4 +24,8 @@
     <dimen name="perfil_image_size">64dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
+    <dimen name="titulo_size">20sp</dimen>
+    <dimen name="subtitulo_size">16sp</dimen>
+    <dimen name="margin_title_subtitle">36dp</dimen>
+
 </resources>

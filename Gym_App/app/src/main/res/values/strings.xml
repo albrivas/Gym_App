@@ -2,6 +2,7 @@
 
     <!-- NOMBRE APLICACION -->
     <string name="app_name">Gym App</string>
+    <string name="app_image">Logo Aplicacion</string>
 
     <!-- LOGIN ACTIVITY -->
     <string name="hint_email">Correo electronico</string>
@@ -26,7 +27,7 @@
         Debe introducir una cuenta de correo válida,
         en caso contrario no podrá reestablecer la contraseña
     </string>
-    <string name="label_registro">¿Ya tienes una cuenta? <i><u>Login</u></i></string>
+    <string name="label_registro">¿Ya tienes una cuenta? <i><u>Iniciar sesion</u></i></string>
 
     <!-- VIEWPAGER -->
     <string name="fragmento_ejercicios">Ejercicios</string>

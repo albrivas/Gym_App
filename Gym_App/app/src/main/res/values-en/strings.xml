@@ -3,6 +3,7 @@
 
     <!-- NOMBRE APLICACION -->
     <string name="app_name">Gym App</string>
+    <string name="app_image">Logo Aplication</string>
 
     <!-- LOGIN ACTIVITY -->
     <string name="hint_email">Email</string>
@@ -56,6 +57,6 @@
     <string name="action_search">Search</string>
     <string name="texto_descripcion">Description:</string>
     <string name="dialogo_salir">Do yoy want to close the application?</string>
-    <string name="dialogo_cerrarsesion">Do yoy want to close the session?</string>
+    <string name="dialogo_cerrarsesion">Do you want to close the session?</string>
 
 </resources>
