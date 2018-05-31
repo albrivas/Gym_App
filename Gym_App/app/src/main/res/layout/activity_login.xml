@@ -59,6 +59,7 @@
             android:autoLink="web"
             android:text="@string/label_olvidada_contraseña"
             android:gravity="end"
+            android:padding="12dp"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 

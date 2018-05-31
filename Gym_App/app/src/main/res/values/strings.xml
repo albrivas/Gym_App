@@ -7,15 +7,15 @@
     <string name="hint_email">Correo electronico</string>
     <string name="hint_password">Contraseña</string>
     <string name="hint_login">Iniciar sesion</string>
-    <string name="label_login">No account yet? <i><u>Create one</u></i></string>
-    <string name="label_olvidada_contraseña"><i><u>Forgot your password?</u></i></string>
+    <string name="label_login">¿Aún no tienes cuenta? <i><u>Crear una</u></i></string>
+    <string name="label_olvidada_contraseña"><i><u>¿Olvidaste la contraseña?</u></i></string>
 
     <!-- FORGOT_PASSWORD ACTIVITY -->
     <string name="button_sendemail">Enviar email</string>
-    <string name="label_contraseña"><i><u>I just remembered it</u></i></string>
+    <string name="label_contraseña"><i><u>Ya la he recordado</u></i></string>
     <string name="label_descripcion_contraseña">
         Necesitamos su correo electronico
-        registrado para enviar las intrucciones de restablecimiento de la contraseña
+        registrado para enviar las instrucciones de restablecimiento de la contraseña
     </string>
     <string name="label_titulo_contraseña">¿Ha olvidado su contraseña?</string>
 
@@ -24,9 +24,9 @@
     <string name="button_create">Registrar</string>
     <string name="label_descripcion_registro">
         Debe introducir una cuenta de correo válida,
-        sino no podrá reestablecer la contraseña en caso de no recordarla
+        en caso contrario no podrá reestablecer la contraseña
     </string>
-    <string name="label_registro">Already have an account? <i><u>Login</u></i></string>
+    <string name="label_registro">¿Ya tienes una cuenta? <i><u>Login</u></i></string>
 
     <!-- VIEWPAGER -->
     <string name="fragmento_ejercicios">Ejercicios</string>
@@ -37,11 +37,10 @@
     <string name="error_login">Error inicio de sesion</string>
     <string name="error_autenticacion">Usuario o contraseña incorrectos</string>
     <string name="error_cuenta_inhabilitada">Usuario deshabilitado</string>
-    <string name="error_conexion">Compruebe la conexion</string>
+    <string name="error_conexion">Compruebe la conexión</string>
     <string name="email_introducir">Introduce un email</string>
     <string name="pass_introducir">Introduce una contraseña</string>
     <string name="pass_longitud">La contraseña debe tener mas de 6 caracteres</string>
-    <string name="error_dominio">La cuenta debe ser europapress.es</string>
     <string name="title_activity_registro">Registro</string>
 
     <string name="title_activity_principal">Gym App</string>
@@ -51,15 +50,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Cerrar sesion</string>
-    <string name="title_activity_main">MainActivity</string>
 
     <string name="error_email">Error al enviar el email</string>
     <string name="email_enviado">Email enviado</string>
     <string name="search_hint">Buscar por nombre. . .</string>
     <string name="action_search">Buscar</string>
     <string name="texto_descripcion">Descripcion:</string>
-    <string name="dialogo_salir">¿Desea cerrar la aplicacion?</string>
-    <string name="dialogo_cerrarsesion">¿Desea cerrar la sesion?</string>
-
+    <string name="dialogo_salir">¿Desea cerrar la aplicación?</string>
+    <string name="dialogo_cerrarsesion">¿Desea cerrar la sesión?</string>
 
 </resources>
