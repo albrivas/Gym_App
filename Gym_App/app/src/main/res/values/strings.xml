@@ -1,14 +1,39 @@
 <resources>
 
-    <!-- Nombre de la aplicacion -->
+    <!-- NOMBRE APLICACION -->
     <string name="app_name">Gym App</string>
 
-    <!-- Strings login activity -->
-    <string name="text_email">EMAIL</string>
-    <string name="hint_email"><font size="13">email@domain</font></string>
-    <string name="hint_password"><font size="13">password</font></string>
-    <string name="text_password">PASSWORD</string>
-    <string name="text_button">Login</string>
+    <!-- LOGIN ACTIVITY -->
+    <string name="hint_email">Correo electronico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_login">Iniciar sesion</string>
+    <string name="label_login">No account yet? <i><u>Create one</u></i></string>
+    <string name="label_olvidada_contraseña"><i><u>Forgot your password?</u></i></string>
+
+    <!-- FORGOT_PASSWORD ACTIVITY -->
+    <string name="button_sendemail">Enviar email</string>
+    <string name="label_contraseña"><i><u>I just remembered it</u></i></string>
+    <string name="label_descripcion_contraseña">
+        Necesitamos su correo electronico
+        registrado para enviar las intrucciones de restablecimiento de la contraseña
+    </string>
+    <string name="label_titulo_contraseña">¿Ha olvidado su contraseña?</string>
+
+    <!-- REGISTRO ACTIVITY -->
+    <string name="hint_fullname">Nombre completo</string>
+    <string name="button_create">Registrar</string>
+    <string name="label_descripcion_registro">
+        Debe introducir una cuenta de correo válida,
+        sino no podrá reestablecer la contraseña en caso de no recordarla
+    </string>
+    <string name="label_registro">Already have an account? <i><u>Login</u></i></string>
+
+    <!-- VIEWPAGER -->
+    <string name="fragmento_ejercicios">Ejercicios</string>
+    <string name="fragmento_semana">Semana</string>
+    <string name="fragmento_actividad">Actividad</string>
+    <string name="fragmento_perfil">Perfil</string>
+
     <string name="error_login">Error inicio de sesion</string>
     <string name="error_autenticacion">Usuario o contraseña incorrectos</string>
     <string name="error_cuenta_inhabilitada">Usuario deshabilitado</string>
@@ -19,16 +44,6 @@
     <string name="error_dominio">La cuenta debe ser europapress.es</string>
     <string name="title_activity_registro">Registro</string>
 
-    <!-- Labels acivities -->
-    <string name="label_login">No account yet? <i><u>Create one</u></i></string>
-    <string name="label_olvidada_contraseña"><i><u>Forgot your password?</u></i></string>
-    <string name="label_registro">Already have an account? <i><u>Login</u></i></string>
-    <string name="label_contraseña"><i><u>I just remembered it</u></i></string>
-    <string name="label_titulo_contraseña">¿Ha olvidado su contraseña?</string>
-    <string name="label_descripcion_contraseña">Necesitamos su correo electronico
-        registrado para enviar las intrucciones de restablecimiento de la contraseña</string>
-    <string name="label_descripcion_registro">Debe introducir una cuenta de correo válida,
-        sino no podrá reestablecer la contraseña en caso de no recordarla</string>
     <string name="title_activity_principal">Gym App</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -37,20 +52,14 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Cerrar sesion</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-
-    <!-- Strings ViewPager -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fragmento_ejercicios">Ejercicios</string>
-    <string name="fragmento_semana">Semana</string>
-    <string name="fragmento_actividad">Actividad</string>
-    <string name="fragmento_perfil">Perfil</string>
 
     <string name="error_email">Error al enviar el email</string>
     <string name="email_enviado">Email enviado</string>
-    <string name="search_hint">Buscar por nombre...</string>
+    <string name="search_hint">Buscar por nombre. . .</string>
     <string name="action_search">Buscar</string>
     <string name="texto_descripcion">Descripcion:</string>
+    <string name="dialogo_salir">¿Desea cerrar la aplicacion?</string>
+    <string name="dialogo_cerrarsesion">¿Desea cerrar la sesion?</string>
 
 
 </resources>
