@@ -82,6 +82,7 @@ public class FragmentoEjercicios extends Fragment {
                 2,
                 LinearLayoutManager.VERTICAL,
                 false));
+        //recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
     }
 
     private void instancias() {
