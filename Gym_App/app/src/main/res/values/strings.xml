@@ -54,7 +54,7 @@
 
     <string name="error_email">Error al enviar el email</string>
     <string name="email_enviado">Email enviado</string>
-    <string name="search_hint">Buscar por nombre. . .</string>
+    <string name="search_hint">Buscar por nombre . . .</string>
     <string name="action_search">Buscar</string>
     <string name="texto_descripcion">Descripcion:</string>
     <string name="dialogo_salir">¿Desea cerrar la aplicación?</string>

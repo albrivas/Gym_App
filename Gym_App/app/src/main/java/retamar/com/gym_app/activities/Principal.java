@@ -238,6 +238,7 @@ public class Principal extends AppCompatActivity
                         public void onClick(DialogInterface dialog, int which) {
                             modelo.signOut(mAuth, mGoogleSignInClient);
                             finish();
+                            startActivity(new Intent(Principal.this, Login.class));
                         }
                     })
                     .show();
