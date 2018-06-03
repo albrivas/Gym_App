@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.firebaseui:firebase-ui:2.1.0'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'com.archit.calendar:awesome-calendar:1.0.1'
 
 }
 

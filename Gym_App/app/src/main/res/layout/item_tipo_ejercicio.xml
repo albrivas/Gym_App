@@ -17,7 +17,7 @@
         android:adjustViewBounds="false"
         android:cropToPadding="false"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile" />
+        android:src="@drawable/profile"/>
 
     <TextView
         android:id="@+id/nombre_tipo_ejercicio"
@@ -35,9 +35,9 @@
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
-        android:layout_height="24sp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:fontFamily="@font/product_sans_regular"
-        android:layout_marginEnd="16sp"/>
+        android:layout_marginEnd="12sp"/>
 
 </LinearLayout>

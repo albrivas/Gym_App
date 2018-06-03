@@ -5,12 +5,6 @@
     tools:context=".activities.TipoEjercicio">
 
     <item
-        android:id="@+id/action_save"
-        android:icon="@drawable/icon_check"
-        android:title="@string/action_settings"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search"
         android:orderInCategory="100"

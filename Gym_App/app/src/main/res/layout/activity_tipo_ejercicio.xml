@@ -44,5 +44,16 @@
         app:layout_anchor="@id/appbarLayout"
         app:layout_anchorGravity="bottom|right|end" />-->
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_check"
+        app:borderWidth="0dp"
+        android:elevation="6dp"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"/>
+
 
 </android.support.design.widget.CoordinatorLayout>
