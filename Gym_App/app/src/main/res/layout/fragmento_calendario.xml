@@ -9,7 +9,7 @@
         android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         custom:disable_date_color="#ABABAB"
         custom:selected_date_circle_color="@color/selected_date_circle_color">
         <!--custom:header_bg="@drawable/calendar_header"

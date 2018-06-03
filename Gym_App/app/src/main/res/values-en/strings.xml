@@ -61,5 +61,9 @@
 
     <string name="title_activity_ejercicios_seleccionados">Selected exercises</string>
     <string name="ejercicios_seleccionados">Select at least 1 exercise</string>
+    <string name="hint_dialogo_entrenamiento">Training name</string>
+    <string name="titulo_dialogo_entrenamiento">Save Training</string>
+    <string name="cancelar_dialogo_entrenamiento">SAVE</string>
+    <string name="guardar_dialogo_entrenamiento">CANCEL</string>
 
 </resources>

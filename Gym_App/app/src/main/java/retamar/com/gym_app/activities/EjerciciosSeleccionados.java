@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,12 +20,15 @@ import java.util.ArrayList;
 
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
+import retamar.com.gym_app.dialogos.DialogoEntrenamiento;
 import retamar.com.gym_app.utils.Ejercicios;
 
-public class EjerciciosSeleccionados extends AppCompatActivity implements AdaptadorRecycler_Lista.OnTipoSelectedListener {
+public class EjerciciosSeleccionados extends AppCompatActivity implements AdaptadorRecycler_Lista.OnTipoSelectedListener,
+        DialogoEntrenamiento.OnDialogoIntroListener{
 
     private RecyclerView recycler;
     ArrayList<Ejercicios> array;
+    public static String TAG_DIALOGO = "NombreEntrenamiento";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,27 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
         itemTouchHelper.attachToRecyclerView(recycler);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_anadir, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_upload:
+                    lanzarDialogo();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void lanzarDialogo() {
+        DialogoEntrenamiento dialog = new DialogoEntrenamiento();
+        dialog.show(getSupportFragmentManager(), TAG_DIALOGO);
+    }
+
     // Accion volver atras.
     @Override
     public boolean onSupportNavigateUp() {
@@ -88,5 +114,10 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
         Intent i = new Intent(EjerciciosSeleccionados.this, DescripcionEjercicio.class);
         i.putExtra(TipoEjercicio.TAG_EJERCICIO, ej);
         startActivity(i);
+    }
+
+    @Override
+    public void onDialogoSelected(String nombre) {
+        Toast.makeText(this, nombre, Toast.LENGTH_SHORT).show();
     }
 }

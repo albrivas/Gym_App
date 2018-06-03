@@ -61,5 +61,9 @@
     <string name="dialogo_cerrarsesion">¿Desea cerrar la sesión?</string>
     <string name="title_activity_ejercicios_seleccionados">Ejercicios Seleccionados</string>
     <string name="ejercicios_seleccionados">Seleccione al menos 1 ejercicios</string>
+    <string name="hint_dialogo_entrenamiento">Nombre del entrenamiento</string>
+    <string name="titulo_dialogo_entrenamiento">Guardar Entrenamiento</string>
+    <string name="cancelar_dialogo_entrenamiento">GUARDAR</string>
+    <string name="guardar_dialogo_entrenamiento">CANCELAR</string>
 
 </resources>
