@@ -5,20 +5,26 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import retamar.com.gym_app.R;
@@ -32,13 +38,16 @@ public class TipoEjercicio extends AppCompatActivity implements
         FirebaseAdapterTipo.OnEjercicioSelectedListener,
         FilterFirebaseAdapter.OnFilterEjercicioSelectedListener {
 
-    RecyclerView recycler;
-    String ejercicio;
-    static String TAG_EJERCICIO = "Todos";
+    private RecyclerView recycler;
+    private String ejercicio;
+    static String TAG_EJERCICIO;
+    static String TAG_SELECCIONADOS = "Seleccionados";
     static String TAG_REFERENCIA = "Ejercicios2";
-    FirebaseDatabase database;
-    DatabaseReference referencia;
-    android.support.v7.widget.SearchView searchView;
+    private FirebaseDatabase database;
+    private DatabaseReference referencia;
+    private android.support.v7.widget.SearchView searchView;
+
+    ArrayList<Ejercicios> ejerciciosSeleccionados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,7 @@ public class TipoEjercicio extends AppCompatActivity implements
         ejercicio = Objects.requireNonNull(getIntent().getExtras()).getString(Principal.TAG_EJERCICIO);
         database = FirebaseDatabase.getInstance();
         referencia = database.getReference(TAG_REFERENCIA);
+        ejerciciosSeleccionados = new ArrayList<>();
     }
 
     private void rellenarLista() {
@@ -116,7 +126,7 @@ public class TipoEjercicio extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.action_search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -136,16 +146,38 @@ public class TipoEjercicio extends AppCompatActivity implements
             }
         });
 
-        /*searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                //rellenarLista();
+                ejerciciosSeleccionados.clear();
                 return false;
             }
-        });*/
-
+        });
 
         return true;
+    }
+
+    private void guardarEjercicios(){
+        if(ejerciciosSeleccionados.size() != 0) {
+            Intent i = new Intent(TipoEjercicio.this, EjerciciosSeleccionados.class);
+            i.putExtra(TAG_SELECCIONADOS, ejerciciosSeleccionados);
+            startActivity(i);
+        }
+        else {
+            Toast.makeText(this, getResources().getString(R.string.ejercicios_seleccionados), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                guardarEjercicios();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void FirebaseSearch(String searhText) {
@@ -187,5 +219,16 @@ public class TipoEjercicio extends AppCompatActivity implements
         Intent i = new Intent(TipoEjercicio.this, DescripcionEjercicio.class);
         i.putExtra(TAG_EJERCICIO, ej);
         startActivity(i);
+    }
+
+
+    @Override
+    public void onCheckEjerciciosSelected(Ejercicios ej) {
+        ejerciciosSeleccionados.add(ej);
+    }
+
+    @Override
+    public void onUnCheckEjerciciosSelected(Ejercicios ej) {
+        ejerciciosSeleccionados.remove(ej);
     }
 }

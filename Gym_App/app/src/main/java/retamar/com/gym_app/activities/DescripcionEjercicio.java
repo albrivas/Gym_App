@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -54,6 +55,7 @@ public class DescripcionEjercicio extends AppCompatActivity {
     }
 
     private void instancias() {
+        Toast.makeText(this, getIntent().getAction(), Toast.LENGTH_SHORT).show();
         ejercicio = (Ejercicios) getIntent().getExtras().getSerializable(TipoEjercicio.TAG_EJERCICIO);
         descripcion = findViewById(R.id.descripcion);
 

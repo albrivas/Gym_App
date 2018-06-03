@@ -59,5 +59,7 @@
     <string name="texto_descripcion">Descripcion:</string>
     <string name="dialogo_salir">¿Desea cerrar la aplicación?</string>
     <string name="dialogo_cerrarsesion">¿Desea cerrar la sesión?</string>
+    <string name="title_activity_ejercicios_seleccionados">Ejercicios Seleccionados</string>
+    <string name="ejercicios_seleccionados">Seleccione al menos 1 ejercicios</string>
 
 </resources>

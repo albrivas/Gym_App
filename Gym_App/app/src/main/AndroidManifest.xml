@@ -39,8 +39,8 @@
         <activity
             android:name=".activities.Principal"
             android:label="@string/title_activity_principal"
-            android:theme="@style/NoAppTheme"
             android:screenOrientation="portrait"
+            android:theme="@style/NoAppTheme"
             android:windowSoftInputMode="stateHidden">
 
         </activity>
@@ -58,6 +58,13 @@
         </activity>
         <activity
             android:name=".activities.DescripcionEjercicio"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoAppTheme">
+
+        </activity>
+        <activity
+            android:name=".activities.EjerciciosSeleccionados"
+            android:label="@string/title_activity_ejercicios_seleccionados"
             android:screenOrientation="portrait"
             android:theme="@style/NoAppTheme">
 

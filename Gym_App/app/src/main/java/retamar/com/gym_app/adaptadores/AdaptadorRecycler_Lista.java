@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +22,11 @@ import retamar.com.gym_app.utils.Ejercicios;
 public class AdaptadorRecycler_Lista extends RecyclerView.Adapter<AdaptadorRecycler_Lista.MyHolder>  {
 
     Context contexto;
-    List<Ejercicios> ejercicios;
+    ArrayList<Ejercicios> ejercicios;
     View v;
     OnTipoSelectedListener listener;
 
-    public AdaptadorRecycler_Lista(Context contexto, List<Ejercicios> ejercicios) {
+    public AdaptadorRecycler_Lista(Context contexto, ArrayList<Ejercicios> ejercicios) {
         this.contexto = contexto;
         this.ejercicios = ejercicios;
         listener = (OnTipoSelectedListener) contexto;
@@ -34,7 +35,7 @@ public class AdaptadorRecycler_Lista extends RecyclerView.Adapter<AdaptadorRecyc
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        v = LayoutInflater.from(contexto).inflate(R.layout.item_lista_ejercicios, parent, false);
+        v = LayoutInflater.from(contexto).inflate(R.layout.item_tipo_ejercicio, parent, false);
         return new MyHolder(v);
     }
 
@@ -65,13 +66,12 @@ public class AdaptadorRecycler_Lista extends RecyclerView.Adapter<AdaptadorRecyc
         public MyHolder(View itemView) {
             super(itemView);
 
-            imagen = itemView.findViewById(R.id.imagen_lista);
-            nombre = itemView.findViewById(R.id.nombre_ejercicio);
+            imagen = itemView.findViewById(R.id.imagen_tipo_ejercicio);
+            nombre = itemView.findViewById(R.id.nombre_tipo_ejercicio);
         }
     }
 
     public interface OnTipoSelectedListener {
         public void onTipoSelected(Ejercicios ej);
     }
-
 }

@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Ejercicios implements Serializable {
 
     String nombre, imagen, video, descripcion, categoria, dificultad;
-    int numero;
 
     public Ejercicios() {
     }
@@ -19,12 +18,6 @@ public class Ejercicios implements Serializable {
     public Ejercicios(String nombre, String imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
-    }
-
-    public Ejercicios(String nombre, String imagen, int numero) {
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.numero = numero;
     }
 
     public Ejercicios(String nombre, String imagen, String video, String descripcion, String categoria, String dificultad) {
@@ -58,9 +51,5 @@ public class Ejercicios implements Serializable {
 
     public String getDificultad() {
         return dificultad;
-    }
-
-    public int getNumero() {
-        return numero;
     }
 }

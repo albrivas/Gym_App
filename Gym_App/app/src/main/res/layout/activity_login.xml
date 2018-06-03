@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp">
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:layout_marginTop="8dp"
             app:passwordToggleEnabled="true">
 
-            <EditText
+            <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +91,7 @@
             android:textAlignment="center"
             android:layout_marginTop="@dimen/button_google_top"
             />
+
 
     </LinearLayout>
 

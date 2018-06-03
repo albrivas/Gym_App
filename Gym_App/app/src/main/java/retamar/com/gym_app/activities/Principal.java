@@ -54,7 +54,7 @@ public class Principal extends AppCompatActivity
     NavigationView navigationView;
     ViewPager viewPager;
     TabLayout tableLayout;
-    static String TAG_EJERCICIO = "Todos";
+    static String TAG_EJERCICIO;
 
     View headerView;
     CircleImageView imagenUsuario;
@@ -100,7 +100,7 @@ public class Principal extends AppCompatActivity
             if(user.getPhotoUrl() != null) {
                 Glide.with(Principal.this).load(user.getPhotoUrl()).into(imagenUsuario);
             }
-            if(user.getDisplayName() == null || user.getDisplayName().equals("")) {
+            else if(user.getDisplayName() == null || user.getDisplayName().equals("")) {
                 LeerUsuarioTask leerUsuarioTask = new LeerUsuarioTask(mAuth, nombreUsuario);
                 leerUsuarioTask.execute();
             }

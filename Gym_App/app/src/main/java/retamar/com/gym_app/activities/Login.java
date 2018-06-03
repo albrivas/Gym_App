@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private TextView linkSignUp, linkOlvidar;
     private SignInButton btnGoogle;
     private AppCompatButton btnLogin;
-    private EditText emailLogin, passwordLogin;
+    private AppCompatEditText emailLogin, passwordLogin;
 
 
     @Override

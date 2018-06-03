@@ -2,6 +2,7 @@ package retamar.com.gym_app.adaptadores;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -32,9 +33,22 @@ public class FilterFirebaseAdapter extends FirebaseRecyclerAdapter<Ejercicios, T
                 listener.onFilterEjercicioSelected(model);
             }
         });
+        viewHolder.check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(compoundButton.isChecked()) {
+                    listener.onCheckEjerciciosSelected(model);
+                }
+                else {
+                    listener.onUnCheckEjerciciosSelected(model);
+                }
+            }
+        });
     }
 
     public interface OnFilterEjercicioSelectedListener {
         public void onFilterEjercicioSelected(Ejercicios ej);
+        public void onCheckEjerciciosSelected(Ejercicios ej);
+        public void onUnCheckEjerciciosSelected(Ejercicios ej);
     }
 }
