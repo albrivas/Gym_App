@@ -71,4 +71,11 @@
     <string name="fecha_ejercicios_guardados">Entrenamientos del dia: </string>
     <string name="title_activity_ejercicios_entrenamientos">Ejercicios Entrenamientos</string>
 
+    <!-- Elementos NavigationView-->
+    <string name="nav_cerrar_sesion">Cerrar sesion</string>
+    <string name="nav_entrenamiento_perso">Entrenamiento personalizado</string>
+    <string name="nav_configuracion">Configuracion</string>
+    <string name="nav_configuracion_entrenamiento">Entrenamiento</string>
+
+
 </resources>

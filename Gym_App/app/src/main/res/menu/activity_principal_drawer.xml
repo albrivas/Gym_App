@@ -3,31 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <item android:title="@string/nav_configuracion_entrenamiento">
+    <menu>
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:id="@+id/nav_entrenamiento"
+            android:icon="@drawable/ic_perso"
+            android:title="@string/nav_entrenamiento_perso" />
+    </menu>
+    </item>
 
-    <item android:title="Configuracion">
+    <item android:title="@string/nav_configuracion">
         <menu>
             <item
                 android:id="@+id/nav_sesion"
                 android:icon="@android:drawable/ic_lock_power_off"
-                android:title="Sign-Up" />
+                android:title="@string/nav_cerrar_sesion" />
 
         </menu>
     </item>

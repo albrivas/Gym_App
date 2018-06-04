@@ -70,4 +70,10 @@
     <string name="title_activity_ejercicios_guardados">Workouts</string>
     <string name="fecha_ejercicios_guardados">Workouts of the day: </string>
 
+    <!-- Elementos NavigationView-->
+    <string name="nav_cerrar_sesion">Sign Out</string>
+    <string name="nav_entrenamiento_perso">Personalized training</string>
+    <string name="nav_configuracion">Configuration</string>
+    <string name="nav_configuracion_entrenamiento">Workouts</string>
+
 </resources>

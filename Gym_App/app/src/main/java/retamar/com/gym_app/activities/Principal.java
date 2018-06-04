@@ -36,7 +36,6 @@ import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.adaptadores.FirebaseAdapter;
 import retamar.com.gym_app.asyntask.LeerUsuarioTask;
-import retamar.com.gym_app.dialogos.DialogoInicio;
 import retamar.com.gym_app.fragmentos.FragmentoCalendario;
 import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
 import retamar.com.gym_app.utils.Ejercicios;
@@ -44,7 +43,7 @@ import retamar.com.gym_app.utils.Modelo;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        DialogoInicio.OnDialogoInicio, FirebaseAdapter.OnTipoSelectedListener,
+        FirebaseAdapter.OnTipoSelectedListener,
         FragmentoCalendario.CalendarListener, FragmentoEjercicios.OnCrearEntrenamientoListener{
 
     Modelo modelo;
@@ -172,6 +171,7 @@ public class Principal extends AppCompatActivity
                 startActivity(new Intent(Principal.this, Login.class));
                 finish();
                 break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -186,6 +186,13 @@ public class Principal extends AppCompatActivity
                 modelo.signOut(mAuth, mGoogleSignInClient);
                 startActivity(new Intent(Principal.this, Login.class));
                 finish();
+                break;
+
+            case R.id.nav_entrenamiento:
+                TAG_EJERCICIO = "Todos";
+                Intent i = new Intent(Principal.this, TipoEjercicio.class);
+                i.putExtra(TAG_EJERCICIO, "Todos");
+                startActivity(i);
                 break;
         }
 
@@ -214,10 +221,6 @@ public class Principal extends AppCompatActivity
         startActivity(i);
     }
 
-    @Override
-    public void onDataDialogoInicio(String s) {
-
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

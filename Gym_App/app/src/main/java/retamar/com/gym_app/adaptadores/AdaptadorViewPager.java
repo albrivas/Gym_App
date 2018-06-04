@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.fragmentos.FragmentoCalendario;
 import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
+import retamar.com.gym_app.fragmentos.FragmentoPerfil;
 
 public class AdaptadorViewPager extends FragmentPagerAdapter {
 
@@ -30,7 +31,7 @@ public class AdaptadorViewPager extends FragmentPagerAdapter {
             case 1:
                 return  new FragmentoCalendario();
             case 2:
-                return  new FragmentoEjercicios();
+                return  new FragmentoPerfil();
 
                 default:
                     return null;
