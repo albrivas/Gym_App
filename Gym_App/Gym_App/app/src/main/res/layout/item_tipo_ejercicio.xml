@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imagen_tipo_ejercicio"
+        android:layout_width="56sp"
+        android:layout_height="56sp"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginBottom="8sp"
+        android:layout_marginEnd="8sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="8sp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile"/>
+
+    <TextView
+        android:id="@+id/nombre_tipo_ejercicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:layout_marginStart="16sp"
+        android:text="Torso"
+        android:fontFamily="@font/product_sans_regular"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_gravity="center_vertical"
+        />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginEnd="12sp"/>
+
+</LinearLayout>

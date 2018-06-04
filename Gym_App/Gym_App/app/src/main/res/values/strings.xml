@@ -1,0 +1,72 @@
+<resources>
+
+    <!-- NOMBRE APLICACION -->
+    <string name="app_name">Gym App</string>
+    <string name="app_image">Logo Aplicacion</string>
+
+    <!-- LOGIN ACTIVITY -->
+    <string name="hint_email">Correo electronico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_login">Iniciar sesion</string>
+    <string name="label_login">¿Aún no tienes cuenta? <i><u>Crear una</u></i></string>
+    <string name="label_olvidada_contraseña"><i><u>¿Olvidaste la contraseña?</u></i></string>
+
+    <!-- FORGOT_PASSWORD ACTIVITY -->
+    <string name="button_sendemail">Enviar email</string>
+    <string name="label_contraseña"><i><u>Ya la he recordado</u></i></string>
+    <string name="label_descripcion_contraseña">
+        Necesitamos su correo electronico
+        registrado para enviar las instrucciones de restablecimiento de la contraseña
+    </string>
+    <string name="label_titulo_contraseña">¿Ha olvidado su contraseña?</string>
+
+    <!-- REGISTRO ACTIVITY -->
+    <string name="hint_fullname">Nombre completo</string>
+    <string name="button_create">Registrar</string>
+    <string name="label_descripcion_registro">
+        Debe introducir una cuenta de correo válida,
+        en caso contrario no podrá reestablecer la contraseña
+    </string>
+    <string name="label_registro">¿Ya tienes una cuenta? <i><u>Iniciar sesion</u></i></string>
+
+    <!-- VIEWPAGER -->
+    <string name="fragmento_ejercicios">Ejercicios</string>
+    <string name="fragmento_semana">Semana</string>
+    <string name="fragmento_actividad">Actividad</string>
+    <string name="fragmento_perfil">Perfil</string>
+
+    <string name="error_login">Error inicio de sesion</string>
+    <string name="error_autenticacion">Usuario o contraseña incorrectos</string>
+    <string name="error_cuenta_inhabilitada">Usuario deshabilitado</string>
+    <string name="error_conexion">Compruebe la conexión</string>
+    <string name="email_introducir">Introduce un email</string>
+    <string name="pass_introducir">Introduce una contraseña</string>
+    <string name="pass_longitud">La contraseña debe tener mas de 6 caracteres</string>
+    <string name="title_activity_registro">Registro</string>
+
+    <string name="title_activity_principal">Gym App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Cerrar sesion</string>
+
+    <string name="error_email">Error al enviar el email</string>
+    <string name="email_enviado">Email enviado</string>
+    <string name="search_hint">Buscar por nombre . . .</string>
+    <string name="action_search">Buscar</string>
+    <string name="texto_descripcion">Descripcion:</string>
+    <string name="dialogo_salir">¿Desea cerrar la aplicación?</string>
+    <string name="dialogo_cerrarsesion">¿Desea cerrar la sesión?</string>
+    <string name="title_activity_ejercicios_seleccionados">Ejercicios Seleccionados</string>
+    <string name="ejercicios_seleccionados">Seleccione al menos 1 ejercicios</string>
+    <string name="hint_dialogo_entrenamiento">Nombre del entrenamiento</string>
+    <string name="titulo_dialogo_entrenamiento">Guardar Entrenamiento</string>
+    <string name="guardar_dialogo_entrenamiento">GUARDAR</string>
+    <string name="cancelar_dialogo_entrenamiento">CANCELAR</string>
+    <string name="descripcion_calendario">Selecciona una fecha en el siguiente calendario para poder ver los entrenamientos guardados:</string>
+    <string name="title_activity_ejercicios_guardados">Entrenamientos</string>
+    <string name="fecha_ejercicios_guardados">Entrenamientos guardados del dia: </string>
+
+</resources>

@@ -56,14 +56,18 @@
     <string name="search_hint">Search by name . . .</string>
     <string name="action_search">Search</string>
     <string name="texto_descripcion">Description:</string>
-    <string name="dialogo_salir">Do yoy want to close the application?</string>
+    <string name="texto_repeticion">Repetitions:</string>
+    <string name="dialogo_salir">Do you want to close the application?</string>
     <string name="dialogo_cerrarsesion">Do you want to close the session?</string>
 
     <string name="title_activity_ejercicios_seleccionados">Selected exercises</string>
     <string name="ejercicios_seleccionados">Select at least 1 exercise</string>
     <string name="hint_dialogo_entrenamiento">Training name</string>
-    <string name="titulo_dialogo_entrenamiento">Save Training</string>
-    <string name="cancelar_dialogo_entrenamiento">SAVE</string>
-    <string name="guardar_dialogo_entrenamiento">CANCEL</string>
+    <string name="titulo_dialogo_entrenamiento"><b>Save Training</b></string>
+    <string name="guardar_dialogo_entrenamiento"><b>SAVE</b></string>
+    <string name="cancelar_dialogo_entrenamiento"><b>CANCEL</b></string>
+    <string name="descripcion_calendario">Select a date in the following calendar to see the saved workouts:</string>
+    <string name="title_activity_ejercicios_guardados">Workouts</string>
+    <string name="fecha_ejercicios_guardados">Workouts of the day: </string>
 
 </resources>

@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.asyntask.CreateAccountTask;
+import retamar.com.gym_app.asyntask.EscribirBDTask;
 import retamar.com.gym_app.utils.Modelo;
+import retamar.com.gym_app.utils.Usuario;
 
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {
 

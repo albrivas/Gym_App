@@ -35,7 +35,7 @@ public class AdaptadorRecycler_Lista extends RecyclerView.Adapter<AdaptadorRecyc
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        v = LayoutInflater.from(contexto).inflate(R.layout.item_tipo_ejercicio, parent, false);
+        v = LayoutInflater.from(contexto).inflate(R.layout.item_ejercicios_entrenamientos, parent, false);
         return new MyHolder(v);
     }
 
@@ -66,8 +66,8 @@ public class AdaptadorRecycler_Lista extends RecyclerView.Adapter<AdaptadorRecyc
         public MyHolder(View itemView) {
             super(itemView);
 
-            imagen = itemView.findViewById(R.id.imagen_tipo_ejercicio);
-            nombre = itemView.findViewById(R.id.nombre_tipo_ejercicio);
+            imagen = itemView.findViewById(R.id.imagen_ejercicio_entrenamiento);
+            nombre = itemView.findViewById(R.id.nombre_ejercicio_entrenamiento);
         }
     }
 

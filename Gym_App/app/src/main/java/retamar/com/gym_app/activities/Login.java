@@ -116,16 +116,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void escribirBD(Task<AuthResult> task) {
-        Usuario user = new Usuario(
-                mAuth.getCurrentUser().getDisplayName(),
-                mAuth.getCurrentUser().getEmail(),
-                mAuth.getCurrentUser().getUid());
-
-        EscribirBDTask escribirBDTask = new EscribirBDTask(task, user, "Usuarios");
-        escribirBDTask.execute();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -160,6 +150,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         LoginGoogleTask loginGoogleTask = new LoginGoogleTask(this, acct);
         loginGoogleTask.execute();
+
     }
 
     // AUTENTICACION CON EMAIL y PASSWORD.
@@ -183,6 +174,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         //Autenticacion del usuario
         LoginFirebaseTask loginFirebaseTask = new LoginFirebaseTask(email, password, Login.this);
         loginFirebaseTask.execute();
+
     }
 
     @Override

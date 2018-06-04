@@ -42,6 +42,12 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         btnReset.setOnClickListener(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        modelo.hideProgressDialog();
+    }
+
     private void instancias() {
         modelo = new Modelo();
         linkLogin = findViewById(R.id.link_login);
@@ -60,6 +66,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         if(modelo.compruebaConexion(ForgotPassword.this)) {
             ForgotPasswordTask task = new ForgotPasswordTask(this, emailRecuperacion.getText().toString());
             task.execute();
+            modelo.hideProgressDialog();
         }
         else {
             modelo.hideProgressDialog();

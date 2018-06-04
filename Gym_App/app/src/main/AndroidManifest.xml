@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="retamar.com.gym_app">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -26,24 +26,18 @@
             android:name=".activities.CreateAccount"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activities.ForgotPassword"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activities.Principal"
             android:label="@string/title_activity_principal"
             android:screenOrientation="portrait"
             android:theme="@style/NoAppTheme"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".activities.TipoEjercicio"
             android:screenOrientation="portrait"
@@ -59,16 +53,20 @@
         <activity
             android:name=".activities.DescripcionEjercicio"
             android:screenOrientation="portrait"
-            android:theme="@style/NoAppTheme">
-
-        </activity>
+            android:theme="@style/NoAppTheme"></activity>
         <activity
             android:name=".activities.EjerciciosSeleccionados"
             android:label="@string/title_activity_ejercicios_seleccionados"
             android:screenOrientation="portrait"
-            android:theme="@style/NoAppTheme">
-
-        </activity>
+            android:theme="@style/NoAppTheme"></activity>
+        <activity
+            android:name=".activities.EjerciciosGuardados"
+            android:label="@string/title_activity_ejercicios_guardados"
+            android:theme="@style/NoAppTheme"></activity>
+        <activity
+            android:name=".activities.EjerciciosEntrenamientos"
+            android:label="@string/title_activity_ejercicios_entrenamientos"
+            android:theme="@style/NoAppTheme"></activity>
     </application>
 
 </manifest>

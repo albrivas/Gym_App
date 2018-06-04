@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- NOMBRE APLICACION -->
+    <string name="app_name">Gym App</string>
+    <string name="app_image">Logo Aplication</string>
+
+    <!-- LOGIN ACTIVITY -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_login">Login</string>
+    <string name="label_login">No account yet? <i><u>Create one</u></i></string>
+    <string name="label_olvidada_contraseña"><i><u>Forgot your password?</u></i></string>
+
+    <!-- FORGOT_PASSWORD ACTIVITY -->
+    <string name="button_sendemail">Send Email</string>
+    <string name="label_contraseña"><i><u>I just remembered it</u></i></string>
+    <string name="label_descripcion_contraseña">
+        We need your registered email to send password reset instructions
+    </string>
+    <string name="label_titulo_contraseña">¿Forgot your password?</string>
+
+    <!-- REGISTRO ACTIVITY -->
+    <string name="hint_fullname">Full Name</string>
+    <string name="button_create">Register</string>
+    <string name="label_descripcion_registro">
+        You must enter a valid email account, otherwise you will not be able to reset the password
+    </string>
+    <string name="label_registro">Already have an account? <i><u>Login</u></i></string>
+
+    <!-- VIEWPAGER -->
+    <string name="fragmento_ejercicios">Exercises</string>
+    <string name="fragmento_semana">Week</string>
+    <string name="fragmento_actividad">Activity</string>
+    <string name="fragmento_perfil">Profile</string>
+
+    <string name="error_login">Failed to login</string>
+    <string name="error_autenticacion">Incorrect username or password</string>
+    <string name="error_cuenta_inhabilitada">user disabled</string>
+    <string name="error_conexion">Check connection</string>
+    <string name="email_introducir">Enter an email</string>
+    <string name="pass_introducir">Enter a password</string>
+    <string name="pass_longitud">The password must have more than 6 characters</string>
+    <string name="title_activity_registro">Register</string>
+
+    <string name="title_activity_principal">Gym App</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Sign Out</string>
+
+    <string name="error_email">Error sending email</string>
+    <string name="email_enviado">Email sent</string>
+    <string name="search_hint">Search by name . . .</string>
+    <string name="action_search">Search</string>
+    <string name="texto_descripcion">Description:</string>
+    <string name="dialogo_salir">Do yoy want to close the application?</string>
+    <string name="dialogo_cerrarsesion">Do you want to close the session?</string>
+
+    <string name="title_activity_ejercicios_seleccionados">Selected exercises</string>
+    <string name="ejercicios_seleccionados">Select at least 1 exercise</string>
+    <string name="hint_dialogo_entrenamiento">Training name</string>
+    <string name="titulo_dialogo_entrenamiento">Save Training</string>
+    <string name="guardar_dialogo_entrenamiento">SAVE</string>
+    <string name="cancelar_dialogo_entrenamiento">CANCEL</string>
+    <string name="descripcion_calendario">Select a date in the following calendar to see the saved workouts:</string>
+    <string name="title_activity_ejercicios_guardados">Workouts</string>
+    <string name="fecha_ejercicios_guardados">Saved workouts of the day: </string>
+
+</resources>

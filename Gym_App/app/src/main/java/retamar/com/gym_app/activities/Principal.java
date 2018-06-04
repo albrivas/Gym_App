@@ -18,7 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -27,18 +29,23 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Date;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.adaptadores.FirebaseAdapter;
 import retamar.com.gym_app.asyntask.LeerUsuarioTask;
 import retamar.com.gym_app.dialogos.DialogoInicio;
+import retamar.com.gym_app.fragmentos.FragmentoCalendario;
+import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
 import retamar.com.gym_app.utils.Ejercicios;
 import retamar.com.gym_app.utils.Modelo;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        DialogoInicio.OnDialogoInicio, FirebaseAdapter.OnTipoSelectedListener {
+        DialogoInicio.OnDialogoInicio, FirebaseAdapter.OnTipoSelectedListener,
+        FragmentoCalendario.CalendarListener, FragmentoEjercicios.OnCrearEntrenamientoListener{
 
     Modelo modelo;
 
@@ -47,14 +54,13 @@ public class Principal extends AppCompatActivity
     FirebaseUser user;
     private GoogleSignInClient mGoogleSignInClient;
 
-
-    FloatingActionButton fab;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     ViewPager viewPager;
     TabLayout tableLayout;
     static String TAG_EJERCICIO;
+    static String TAG_FECHA;
 
     View headerView;
     CircleImageView imagenUsuario;
@@ -112,12 +118,10 @@ public class Principal extends AppCompatActivity
 
     private void acciones() {
         navigationView.setNavigationItemSelectedListener(this);
-        fab.setOnClickListener(this);
     }
 
     private void instancias() {
         modelo = new Modelo();
-        fab = findViewById(R.id.fab);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
@@ -126,22 +130,13 @@ public class Principal extends AppCompatActivity
         nombreUsuario = headerView.findViewById(R.id.header_nombre);
         viewPager = findViewById(R.id.view_pager);
         tableLayout = findViewById(R.id.pestanias);
+        TAG_FECHA = "Fecha";
     }
 
     private void configurarPager() {
         AdaptadorViewPager adapter = new AdaptadorViewPager(getSupportFragmentManager(), this);
         viewPager.setAdapter(adapter);
         tableLayout.setupWithViewPager(viewPager);
-
-         /*int[] imageResId = {
-                 R.drawable.lista,
-                 R.drawable.ejercicios,
-                 R.drawable.ejercicios,
-                 R.drawable.perfil_pager};
-
-        for (int i = 0; i < imageResId.length; i++) {
-            tableLayout.getTabAt(i).setIcon(imageResId[i]);
-        }*/
     }
 
     private void configurarToolbar() {
@@ -202,7 +197,7 @@ public class Principal extends AppCompatActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fab:
+            case R.id.fab_entrenamiento:
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
@@ -246,5 +241,20 @@ public class Principal extends AppCompatActivity
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onDateRangeSelected(String date) {
+        Intent i = new Intent(Principal.this, EjerciciosGuardados.class);
+        i.putExtra(TAG_FECHA, date);
+        startActivity(i);
+    }
+
+    @Override
+    public void onCrearEntrenamiento() {
+        TAG_EJERCICIO = "Todos";
+        Intent i = new Intent(Principal.this, TipoEjercicio.class);
+        i.putExtra(TAG_EJERCICIO, "Todos");
+        startActivity(i);
     }
 }

@@ -16,12 +16,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorRecycler_Lista;
 import retamar.com.gym_app.dialogos.DialogoEntrenamiento;
 import retamar.com.gym_app.utils.Ejercicios;
+import retamar.com.gym_app.utils.Modelo;
 
 public class EjerciciosSeleccionados extends AppCompatActivity implements AdaptadorRecycler_Lista.OnTipoSelectedListener,
         DialogoEntrenamiento.OnDialogoIntroListener{
@@ -29,6 +35,8 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
     private RecyclerView recycler;
     ArrayList<Ejercicios> array;
     public static String TAG_DIALOGO = "NombreEntrenamiento";
+
+    Modelo modelo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
     private void instancias() {
         recycler = findViewById(R.id.recycler_ejercicios_seleccionados);
         array = (ArrayList<Ejercicios>) getIntent().getExtras().get(TipoEjercicio.TAG_SELECCIONADOS);
+        modelo = new Modelo();
     }
 
     private void configurarToolbar() {
@@ -116,8 +125,28 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
         startActivity(i);
     }
 
+    private void guardarEntrenamiento(String nombre) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference refencia = database.getReference();
+        HashMap<String, Ejercicios> names = new HashMap<>();
+        //refencia.setValue(modelo.obtenerFechaHoy());
+
+        for (int i= 0; i< array.size(); i++) {
+            array.get(i).setFecha(modelo.obtenerFechaHoy());
+            array.get(i).setEntrenamiento(nombre);
+            names.put(array.get(i).getNombre(), array.get(i));
+        }
+
+
+        refencia.child("Ejercicios Usuarios").child(FirebaseAuth.getInstance().getUid()).child(modelo.obtenerFechaHoy()).child(nombre).setValue(names); //Agregamos el array
+        refencia.child("Entrenamientos Usuarios").child(FirebaseAuth.getInstance().getUid()).child(modelo.obtenerFechaHoy()).child(nombre).child("nombre").setValue(nombre); //Establecemos un nombre al entrenamiento
+
+    }
+
     @Override
     public void onDialogoSelected(String nombre) {
-        Toast.makeText(this, nombre, Toast.LENGTH_SHORT).show();
+        guardarEntrenamiento(nombre);
+
+        Toast.makeText(this, "Entrenamiento guardado", Toast.LENGTH_SHORT).show();
     }
 }

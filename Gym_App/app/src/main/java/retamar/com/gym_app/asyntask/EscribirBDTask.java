@@ -1,6 +1,7 @@
 package retamar.com.gym_app.asyntask;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,7 +25,8 @@ public class EscribirBDTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        database.getReference().child(child).child(task.getResult().getUser().getUid()).setValue(user);
+        database.getReference().child(child).child(user.getUid()).setValue(user);
+        //Toast.makeText()
         return null;
     }
 }

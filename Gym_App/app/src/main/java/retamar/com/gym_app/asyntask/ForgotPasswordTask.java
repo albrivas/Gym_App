@@ -38,6 +38,7 @@ public class ForgotPasswordTask extends AsyncTask<Void, Void, Void> {
                 }
             }
         });
+
         return null;
     }
 }

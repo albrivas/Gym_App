@@ -9,9 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import dmax.dialog.SpotsDialog;
+import retamar.com.gym_app.asyntask.EscribirBDTask;
 
 public class Modelo {
 
@@ -75,5 +82,14 @@ public class Modelo {
 
     public void signOutFirebase(FirebaseAuth auth) {
         auth.signOut();
+    }
+
+    public String obtenerFechaHoy() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        Date date = new Date();
+
+        String fecha = dateFormat.format(date);
+
+        return fecha;
     }
 }

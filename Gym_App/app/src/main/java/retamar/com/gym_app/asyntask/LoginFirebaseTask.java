@@ -12,8 +12,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
+import retamar.com.gym_app.activities.Login;
 import retamar.com.gym_app.activities.Principal;
 import retamar.com.gym_app.R;
+import retamar.com.gym_app.utils.Modelo;
 
 public class LoginFirebaseTask extends AsyncTask<Void, Void, Void> {
 
@@ -25,6 +27,7 @@ public class LoginFirebaseTask extends AsyncTask<Void, Void, Void> {
         this.password = password;
         this.contexto = contexto;
     }
+
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -41,7 +44,8 @@ public class LoginFirebaseTask extends AsyncTask<Void, Void, Void> {
                 }
                 else {
                     if(task.getException() instanceof FirebaseAuthInvalidUserException) {
-                        Toast.makeText(contexto, ""+task.getException(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(contexto, "El usuario esta dehabilitado o bloqueado", Toast.LENGTH_LONG).show();
+
                     } else {
                         Toast.makeText(contexto, contexto.getString(R.string.error_autenticacion), Toast.LENGTH_LONG).show();
                     }

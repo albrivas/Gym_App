@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "844812596356",
+    "firebase_url": "https://tfg-app-gym.firebaseio.com",
+    "project_id": "tfg-app-gym",
+    "storage_bucket": "tfg-app-gym.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844812596356:android:55c991321d289450",
+        "android_client_info": {
+          "package_name": "retamar.com.gym_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844812596356-119gjilin98dehqrvelg0ei00aqmphuo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "retamar.com.gym_app",
+            "certificate_hash": "9af183457a0e28caa3a91953443c187eb0d402c1"
+          }
+        },
+        {
+          "client_id": "844812596356-2neem3r72eebn5i3ljeebpadheq43s8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpLO-0ge2hdGtT_0E-lWjtIpiN-2adppk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844812596356-2neem3r72eebn5i3ljeebpadheq43s8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

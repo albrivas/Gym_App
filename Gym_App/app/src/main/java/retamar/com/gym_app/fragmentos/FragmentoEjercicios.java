@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
@@ -43,14 +44,18 @@ public class FragmentoEjercicios extends Fragment {
     Context contexto;
     View v;
     static String TAG_REFERENCIA = "Tipo Ejercicios";
+    FloatingActionButton fab;
 
     FirebaseDatabase database;
     DatabaseReference referencia;
+
+    OnCrearEntrenamientoListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         contexto = context;
+        listener = (OnCrearEntrenamientoListener) contexto;
     }
 
     @Nullable
@@ -65,6 +70,36 @@ public class FragmentoEjercicios extends Fragment {
         super.onActivityCreated(savedInstanceState);
         instancias();
         rellenarLista();
+        scrollFloating();
+        acciones();
+    }
+
+    private void acciones() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onCrearEntrenamiento();
+            }
+        });
+    }
+
+    // Ocultar Floatting al hacer scroll
+    private void scrollFloating() {
+        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                    fab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy<0 && fab.isShown())
+                    fab.hide();
+            }
+        });
     }
 
     private void rellenarLista() {
@@ -77,17 +112,17 @@ public class FragmentoEjercicios extends Fragment {
                 contexto);
 
         recycler.setAdapter(adaptadorFirebase);
-        recycler.setLayoutManager(new GridLayoutManager(
-                contexto,
-                2,
-                LinearLayoutManager.VERTICAL,
-                false));
-        //recycler.addItemDecoration(new DividerItemDecoration(contexto, DividerItemDecoration.VERTICAL));
+        recycler.setLayoutManager(new GridLayoutManager(contexto, 2, LinearLayoutManager.VERTICAL, false));
     }
 
     private void instancias() {
         recycler = v.findViewById(R.id.lista_recycler);
         database = FirebaseDatabase.getInstance();
         referencia = database.getReference(TAG_REFERENCIA);
+        fab = v.findViewById(R.id.fab_entrenamiento);
+    }
+
+    public interface OnCrearEntrenamientoListener {
+        public void onCrearEntrenamiento();
     }
 }
