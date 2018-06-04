@@ -28,23 +28,33 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.adaptadores.AdaptadorViewPager;
 import retamar.com.gym_app.adaptadores.FirebaseAdapter;
 import retamar.com.gym_app.asyntask.LeerUsuarioTask;
+import retamar.com.gym_app.dialogos.DialogoIMC;
 import retamar.com.gym_app.fragmentos.FragmentoCalendario;
 import retamar.com.gym_app.fragmentos.FragmentoEjercicios;
+import retamar.com.gym_app.fragmentos.FragmentoPerfil;
 import retamar.com.gym_app.utils.Ejercicios;
 import retamar.com.gym_app.utils.Modelo;
+import retamar.com.gym_app.utils.Usuario;
 
 public class Principal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
         FirebaseAdapter.OnTipoSelectedListener,
-        FragmentoCalendario.CalendarListener, FragmentoEjercicios.OnCrearEntrenamientoListener{
+        FragmentoCalendario.CalendarListener, FragmentoEjercicios.OnCrearEntrenamientoListener,
+        DialogoIMC.OnPerfilListener, FragmentoPerfil.OnIMCListener{
 
     Modelo modelo;
 
@@ -60,6 +70,7 @@ public class Principal extends AppCompatActivity
     TabLayout tableLayout;
     static String TAG_EJERCICIO;
     static String TAG_FECHA;
+    static String TAG_IMC;
 
     View headerView;
     CircleImageView imagenUsuario;
@@ -110,7 +121,7 @@ public class Principal extends AppCompatActivity
                 leerUsuarioTask.execute();
             }
             else {
-                Glide.with(Principal.this).load(R.drawable.profile).into(imagenUsuario);
+                Glide.with(Principal.this).load(R.drawable.ic_perfil).into(imagenUsuario);
             }
         }
     }
@@ -130,6 +141,7 @@ public class Principal extends AppCompatActivity
         viewPager = findViewById(R.id.view_pager);
         tableLayout = findViewById(R.id.pestanias);
         TAG_FECHA = "Fecha";
+        TAG_IMC = "IMC";
     }
 
     private void configurarPager() {
@@ -246,6 +258,11 @@ public class Principal extends AppCompatActivity
         return super.onKeyDown(keyCode, event);
     }
 
+    private void lanzarDialogo() {
+        DialogoIMC dialog = new DialogoIMC();
+        dialog.show(getSupportFragmentManager(), TAG_IMC);
+    }
+
     @Override
     public void onDateRangeSelected(String date) {
         Intent i = new Intent(Principal.this, EjerciciosGuardados.class);
@@ -259,5 +276,27 @@ public class Principal extends AppCompatActivity
         Intent i = new Intent(Principal.this, TipoEjercicio.class);
         i.putExtra(TAG_EJERCICIO, "Todos");
         startActivity(i);
+    }
+
+    @Override
+    public void onIMCSelected() {
+        lanzarDialogo();
+        Toast.makeText(this, "IMC pulsado", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPerfilSelected(String peso, String altura, String edad) {
+        //Toast.makeText(this, peso+altura+edad, Toast.LENGTH_SHORT).show();
+        final FirebaseDatabase database;
+        final DatabaseReference referencia;
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+
+        Usuario u = new Usuario(Integer.parseInt(peso), Double.parseDouble(altura), Double.parseDouble(edad));
+        HashMap<String, Object> has = new HashMap<>();
+        has.put("peso", peso);
+        has.put("altura", altura);
+        has.put("edad", edad);
+        database.getReference("Usuarios").child(user.getUid()).updateChildren(has);
     }
 }
