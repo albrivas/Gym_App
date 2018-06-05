@@ -76,4 +76,15 @@
     <string name="nav_configuracion">Configuration</string>
     <string name="nav_configuracion_entrenamiento">Workouts</string>
 
+    <!-- Dialogo IMC -->
+    <string name="dialogo_imc_error">Error saving data</string>
+    <string name="dialogo_imc_titulo"><b>Enter the data</b></string>
+    <string name="dialogo_imc_edad">Enter age</string>
+    <string name="dialogo_imc_peso">Enter weight</string>
+    <string name="dialogo_imc_altura">Enter height</string>
+    <string name="fragmento_perfil_edad">Age: </string>
+    <string name="fragmento_perfil_peso">Weight: </string>
+    <string name="fragmento_perfil_altura">Height: </string>
+
+
 </resources>

@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Introduce la edad"
+        android:backgroundTint="@color/colorPrimary"
+        android:hint="@string/dialogo_imc_edad"
         />
 
     <EditText
@@ -26,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="Introduce el peso"
+        android:backgroundTint="@color/colorPrimary"
+        android:hint="@string/dialogo_imc_peso"
         />
 
     <EditText
@@ -35,8 +37,9 @@
         android:layout_marginStart="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Introduce la altura"
+        android:inputType="number"
+        android:backgroundTint="@color/colorPrimary"
+        android:hint="@string/dialogo_imc_altura"
         />
 
 </LinearLayout>

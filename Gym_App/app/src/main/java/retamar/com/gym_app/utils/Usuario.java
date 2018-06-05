@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable {
 
-    String fullname, email, uid, password;
-    int edad;
-    double peso, altura, IMC;
+    private String fullname, email, uid;
+    private int edad;
+    private double peso, altura, IMC;
 
     public Usuario() {
     }
@@ -15,7 +15,6 @@ public class Usuario implements Serializable {
         this.fullname = fullname;
         this.email = email;
         this.uid = uid;
-        this.password = password;
         this.edad = edad;
         this.peso = peso;
         this.altura = altura;
@@ -34,17 +33,12 @@ public class Usuario implements Serializable {
         this.altura = altura;
     }
 
-    /*public Usuario(int edad, double peso, double altura, double IMC) {
-        this.edad = edad;
-        this.peso = peso;
-        this.altura = altura;
-        this.IMC = IMC;
-    }*/
 
     public Usuario(String fullname, String email) {
         this.fullname = fullname;
         this.email = email;
     }
+
 
     public String getFullname() {
         return fullname;
@@ -56,5 +50,21 @@ public class Usuario implements Serializable {
 
     public String getUid() {
         return uid;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public double getIMC() {
+        return IMC;
     }
 }

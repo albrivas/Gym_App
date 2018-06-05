@@ -249,6 +249,7 @@ public class Principal extends AppCompatActivity
                             modelo.signOut(mAuth, mGoogleSignInClient);
                             finish();
                             startActivity(new Intent(Principal.this, Login.class));
+
                         }
                     })
                     .show();
@@ -281,22 +282,24 @@ public class Principal extends AppCompatActivity
     @Override
     public void onIMCSelected() {
         lanzarDialogo();
-        Toast.makeText(this, "IMC pulsado", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onPerfilSelected(String peso, String altura, String edad) {
-        //Toast.makeText(this, peso+altura+edad, Toast.LENGTH_SHORT).show();
         final FirebaseDatabase database;
         final DatabaseReference referencia;
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
 
-        Usuario u = new Usuario(Integer.parseInt(peso), Double.parseDouble(altura), Double.parseDouble(edad));
-        HashMap<String, Object> has = new HashMap<>();
-        has.put("peso", peso);
-        has.put("altura", altura);
-        has.put("edad", edad);
-        database.getReference("Usuarios").child(user.getUid()).updateChildren(has);
+        try {
+            Usuario u = new Usuario(Integer.parseInt(edad), Double.parseDouble(peso), Double.parseDouble(altura));
+            HashMap<String, Object> has = new HashMap<>();
+            has.put("peso", peso);
+            has.put("altura", altura);
+            has.put("edad", edad);
+            database.getReference("Usuarios").child(user.getUid()).updateChildren(has);
+        } catch (Exception e) {
+            Toast.makeText(this, getResources().getString(R.string.dialogo_imc_error), Toast.LENGTH_SHORT).show();
+        }
     }
 }

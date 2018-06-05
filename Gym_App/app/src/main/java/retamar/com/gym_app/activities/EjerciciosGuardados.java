@@ -71,7 +71,14 @@ public class EjerciciosGuardados extends AppCompatActivity implements  Adaptador
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren())
                     array.add(childSnapshot.getValue(Entrenamiento.class));
+                if(array.size() != 0) {
                     adaptador.notifyDataSetChanged();
+                }
+                else {
+                    Entrenamiento u = new Entrenamiento("No hay entrenamientos disponibles");
+                    array.add(u);
+                    adaptador.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -117,8 +124,6 @@ public class EjerciciosGuardados extends AppCompatActivity implements  Adaptador
     @Override
     public void onTipoSelected(Entrenamiento ej) {
         TAG_ENTRENAMIENTO = ej.getNombre();
-        Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, TAG_FECHA, Toast.LENGTH_SHORT).show();
 
         Intent i = new Intent(EjerciciosGuardados.this, EjerciciosEntrenamientos.class);
         i.putExtra(TAG_ENTRENAMIENTO, ej.getNombre());

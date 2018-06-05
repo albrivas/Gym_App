@@ -183,14 +183,7 @@ public class TipoEjercicio extends AppCompatActivity implements
 
     private void FirebaseSearch(String searhText) {
         final Query firebaseSearchQuery;
-        /*if(ejercicio.equals("Todos")) {
-            firebaseSearchQuery = database.getReference(TAG_REFERENCIA).orderByChild("nombre").startAt(searhText).endAt(searhText + "\uf8ff");
-        }
-        else{
-            firebaseSearchQuery = database.getReference(TAG_REFERENCIA).orderByChild("categoria").orderByChild(ejercicio).startAt(searhText).endAt(searhText + "\uf8ff");
-        }*/
 
-        
         firebaseSearchQuery = database.getReference(TAG_REFERENCIA).orderByChild("nombre").startAt(searhText).endAt(searhText + "\uf8ff");
         final FilterFirebaseAdapter firebaseRecyclerAdapter = new FilterFirebaseAdapter(
 

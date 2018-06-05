@@ -55,7 +55,6 @@ public class DescripcionEjercicio extends AppCompatActivity {
     }
 
     private void instancias() {
-        Toast.makeText(this, getIntent().getAction(), Toast.LENGTH_SHORT).show();
         ejercicio = (Ejercicios) getIntent().getExtras().getSerializable(TipoEjercicio.TAG_EJERCICIO);
         descripcion = findViewById(R.id.descripcion);
 

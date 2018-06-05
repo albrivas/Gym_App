@@ -34,7 +34,7 @@ public class DialogoIMC extends android.support.v4.app.DialogFragment {
         edad = view.findViewById(R.id.texto_edad);
 
         AlertDialog.Builder dialogo = new AlertDialog.Builder(getActivity());
-        dialogo.setTitle("Introduce los datos");
+        dialogo.setTitle(getResources().getString(R.string.dialogo_imc_titulo));
         dialogo.setView(view);
         dialogo.setPositiveButton(getResources().getString(R.string.guardar_dialogo_entrenamiento), new DialogInterface.OnClickListener() {
             @Override

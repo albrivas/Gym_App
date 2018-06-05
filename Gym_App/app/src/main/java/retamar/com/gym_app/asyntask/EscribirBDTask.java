@@ -7,6 +7,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 import retamar.com.gym_app.utils.Usuario;
 
 public class EscribirBDTask extends AsyncTask<Void, Void, Void> {
@@ -25,8 +27,13 @@ public class EscribirBDTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        database.getReference().child(child).child(user.getUid()).setValue(user);
-        //Toast.makeText()
+        HashMap<String, Object> has = new HashMap<>();
+        has.put("email", user.getEmail());
+        has.put("fullname", user.getFullname());
+        has.put("uid", user.getUid());
+
+        database.getReference().child(child).child(user.getUid()).updateChildren(has);
+
         return null;
     }
 }

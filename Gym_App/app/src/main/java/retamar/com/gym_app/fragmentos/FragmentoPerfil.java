@@ -21,10 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 import retamar.com.gym_app.R;
-import retamar.com.gym_app.activities.Principal;
-import retamar.com.gym_app.asyntask.LeerUsuarioTask;
-import retamar.com.gym_app.dialogos.DialogoEntrenamiento;
 import retamar.com.gym_app.utils.Usuario;
 
 public class FragmentoPerfil extends Fragment {
@@ -33,7 +32,7 @@ public class FragmentoPerfil extends Fragment {
     Context contexto;
 
     ImageView imagen;
-    TextView nombre, email, imc;
+    TextView nombre, email, imc, imc_edit, edad, peso, altura, edad_edit, peso_edit, altura_edit;
     Usuario u;
 
     OnIMCListener listener;
@@ -58,6 +57,7 @@ public class FragmentoPerfil extends Fragment {
         super.onActivityCreated(savedInstanceState);
         instancias();
         rellenarDatos();
+        rellenar();
         acciones();
     }
 
@@ -106,13 +106,109 @@ public class FragmentoPerfil extends Fragment {
 
             }
         });
+
     }
+
+    public void rellenar() {
+        final FirebaseDatabase database;
+        final DatabaseReference referencia;
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+
+        referencia = database.getReference("Usuarios");
+        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("edad")) {
+                    //Usuario u = dataSnapshot.getValue(Usuario.class);
+                    for (DataSnapshot data: dataSnapshot.getChildren()) {
+                        String test = (String) data.getValue();
+
+                        if(data.getKey().equals("edad")) {
+                            edad_edit.setText(String.valueOf(test));
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("peso")) {
+                    //Usuario u = dataSnapshot.getValue(Usuario.class);
+                    for (DataSnapshot data: dataSnapshot.getChildren()) {
+                        String test = (String) data.getValue();
+
+                        if(data.getKey().equals("peso")) {
+                            peso_edit.setText(String.valueOf(test));
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("altura")) {
+                    //Usuario u = dataSnapshot.getValue(Usuario.class);
+                    for (DataSnapshot data: dataSnapshot.getChildren()) {
+                        String test = (String) data.getValue();
+
+                        if(data.getKey().equals("altura")) {
+                            altura_edit.setText(String.valueOf(test));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    /*private void rellenarIMC() {
+        int calculo = calculoIMC(Integer.parseInt(altura_edit.getText().toString()), Integer.parseInt(peso_edit.getText().toString()));
+        imc_edit.setText(String.valueOf(calculo));
+    }*/
 
     private void instancias() {
         imagen = v.findViewById(R.id.perfil_imagen);
         nombre = v.findViewById(R.id.perfil_nombre);
         email = v.findViewById(R.id.perfil_email);
         imc = v.findViewById(R.id.imc);
+        imc_edit = v.findViewById(R.id.imc_edit);
+        edad = v.findViewById(R.id.perfil_edad);
+        edad_edit = v.findViewById(R.id.perfil_edad_edit);
+        peso = v.findViewById(R.id.perfil_peso);
+        peso_edit = v.findViewById(R.id.perfil_peso_edit);
+        altura = v.findViewById(R.id.perfil_altura);
+        altura_edit = v.findViewById(R.id.perfil_altura_edit);
+
+    }
+
+    private int calculoIMC (int altura, int peso) {
+
+        int calculo = peso/altura;
+
+        return calculo;
+
     }
 
     public interface OnIMCListener {

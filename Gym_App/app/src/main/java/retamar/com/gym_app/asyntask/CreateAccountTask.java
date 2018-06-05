@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 import retamar.com.gym_app.utils.Modelo;
 import retamar.com.gym_app.utils.Usuario;
 
@@ -52,7 +54,12 @@ public class CreateAccountTask extends AsyncTask<Void, Void, Void> {
                                     email, task.getResult().getUser().getUid());
 
                             // Escribir usuario. Con la tarea asincrona no funciona
-                            database.getReference().child("Usuarios").child(user.getUid()).setValue(user);
+                            HashMap<String, Object> has = new HashMap<>();
+                            has.put("email", user.getEmail());
+                            has.put("fullname", user.getFullname());
+                            has.put("uid", user.getUid());
+
+                            database.getReference().child("Usuarios").child(user.getUid()).updateChildren(has);
 
                             modelo.signOutFirebase(mAuth); // Para que al ir a Login no inicie sesion directamente
 

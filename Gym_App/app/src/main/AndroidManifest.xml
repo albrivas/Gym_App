@@ -61,10 +61,12 @@
             android:theme="@style/NoAppTheme"></activity>
         <activity
             android:name=".activities.EjerciciosGuardados"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_ejercicios_guardados"
             android:theme="@style/NoAppTheme"></activity>
         <activity
             android:name=".activities.EjerciciosEntrenamientos"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_ejercicios_entrenamientos"
             android:theme="@style/NoAppTheme"></activity>
     </application>
