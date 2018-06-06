@@ -2,6 +2,7 @@ package retamar.com.gym_app.fragmentos;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,8 +22,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 import retamar.com.gym_app.R;
 import retamar.com.gym_app.utils.Usuario;
@@ -56,9 +60,9 @@ public class FragmentoPerfil extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         instancias();
-        rellenarDatos();
-        rellenar();
         acciones();
+        rellenarNombre();
+        rellenarDatos();
     }
 
     private void acciones() {
@@ -70,8 +74,7 @@ public class FragmentoPerfil extends Fragment {
         });
     }
 
-    private void rellenarDatos() {
-
+    private void rellenarNombre() {
 
         final FirebaseDatabase database;
         final DatabaseReference referencia;
@@ -82,7 +85,6 @@ public class FragmentoPerfil extends Fragment {
         referencia.child(user.getUid()).child("fullname").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //Usuario u = dataSnapshot.getValue(Usuario.class);
                 String valor = (String) dataSnapshot.getValue();
 
                 if(user != null) {
@@ -90,7 +92,6 @@ public class FragmentoPerfil extends Fragment {
                     nombre.setText(user.getDisplayName());
                     email.setText(user.getEmail());
 
-                    email.setText(user.getEmail());
                     if (user.getPhotoUrl() != null) {
                         Glide.with(contexto).load(user.getPhotoUrl()).into(imagen);
                     } else if (user.getDisplayName() == null || user.getDisplayName().equals("")) {
@@ -109,84 +110,98 @@ public class FragmentoPerfil extends Fragment {
 
     }
 
-    public void rellenar() {
+    public void rellenarDatos() {
         final FirebaseDatabase database;
         final DatabaseReference referencia;
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
 
         referencia = database.getReference("Usuarios");
-        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("edad")) {
-                    //Usuario u = dataSnapshot.getValue(Usuario.class);
-                    for (DataSnapshot data: dataSnapshot.getChildren()) {
-                        String test = (String) data.getValue();
 
-                        if(data.getKey().equals("edad")) {
-                            edad_edit.setText(String.valueOf(test));
+        if(user != null) {
+
+            referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild("edad")) {
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            String edad = (String) data.getValue();
+
+                            if (data.getKey().equals("edad")) {
+                                edad_edit.setText(String.valueOf(edad));
+                            }
                         }
                     }
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+            referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild("peso")) {
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            String peso = (String) data.getValue();
 
-        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("peso")) {
-                    //Usuario u = dataSnapshot.getValue(Usuario.class);
-                    for (DataSnapshot data: dataSnapshot.getChildren()) {
-                        String test = (String) data.getValue();
-
-                        if(data.getKey().equals("peso")) {
-                            peso_edit.setText(String.valueOf(test));
+                            if (data.getKey().equals("peso")) {
+                                peso_edit.setText(String.valueOf(peso));
+                            }
                         }
                     }
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+            referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild("altura")) {
+                        for (DataSnapshot data : dataSnapshot.getChildren()) {
+                            String altura = (String) data.getValue();
 
-        referencia.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild("altura")) {
-                    //Usuario u = dataSnapshot.getValue(Usuario.class);
-                    for (DataSnapshot data: dataSnapshot.getChildren()) {
-                        String test = (String) data.getValue();
-
-                        if(data.getKey().equals("altura")) {
-                            altura_edit.setText(String.valueOf(test));
+                            if (data.getKey().equals("altura")) {
+                                altura_edit.setText(String.valueOf(altura));
+                            }
                         }
                     }
+                    //Se pone aqui porque ya sabemos que se han rellenado los campos. De la otra forma no estaban rellenos
+                    if(!peso_edit.getText().toString().isEmpty() || !altura_edit.getText().toString().isEmpty() )
+                        rellenarIMC(Double.parseDouble(peso_edit.getText().toString()), Double.parseDouble(altura_edit.getText().toString()));
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-
+                }
+            });
+        }
     }
 
-    /*private void rellenarIMC() {
-        int calculo = calculoIMC(Integer.parseInt(altura_edit.getText().toString()), Integer.parseInt(peso_edit.getText().toString()));
-        imc_edit.setText(String.valueOf(calculo));
-    }*/
+    private void rellenarIMC(double peso, double altura) {
+        try {
+            double calculo = peso/((altura/100)*(altura/100));
+
+            if(calculo<18 || calculo>25) {
+                imc_edit.setTextColor(Color.RED);
+                imc_edit.setText(String.format(Locale.getDefault(), "%.2f", calculo));
+            }
+            else{
+                imc_edit.setTextColor(Color.GREEN);
+                imc_edit.setText(String.format(Locale.getDefault(), "%.2f", calculo));
+            }
+        }
+        catch (Exception e) {
+            Toast.makeText(contexto, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void instancias() {
         imagen = v.findViewById(R.id.perfil_imagen);
@@ -200,14 +215,6 @@ public class FragmentoPerfil extends Fragment {
         peso_edit = v.findViewById(R.id.perfil_peso_edit);
         altura = v.findViewById(R.id.perfil_altura);
         altura_edit = v.findViewById(R.id.perfil_altura_edit);
-
-    }
-
-    private int calculoIMC (int altura, int peso) {
-
-        int calculo = peso/altura;
-
-        return calculo;
 
     }
 

@@ -125,11 +125,10 @@ public class EjerciciosSeleccionados extends AppCompatActivity implements Adapta
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference refencia = database.getReference();
         HashMap<String, Ejercicios> names = new HashMap<>();
-        //refencia.setValue(modelo.obtenerFechaHoy());
 
         for (int i= 0; i< array.size(); i++) {
-            array.get(i).setFecha(modelo.obtenerFechaHoy());
-            array.get(i).setEntrenamiento(nombre);
+            //array.get(i).setFecha(modelo.obtenerFechaHoy());
+            //array.get(i).setEntrenamiento(nombre);
             names.put(array.get(i).getNombre(), array.get(i));
         }
 

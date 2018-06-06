@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!" />
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/materialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:text="Material Button"
+        app:backgroundTint="@color/colorPrimary"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        app:cornerRadius="25dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        boxCornerRadiusTopLeft="2dp"
+        boxCornerRadiusTopRight="2dp"
+        boxCornerRadiusBottomLeft="2dp"
+        boxCornerRadiusBottomRight="2dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electronico"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>

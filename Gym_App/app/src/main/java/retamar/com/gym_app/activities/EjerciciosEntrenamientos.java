@@ -54,7 +54,6 @@ public class EjerciciosEntrenamientos extends AppCompatActivity implements Adapt
     }
 
     private void rellenarLista() {
-        Toast.makeText(this, nombreEntrenamiento, Toast.LENGTH_LONG).show();
         referencia = database.getReference(TAG_REFERENCIA).child(user.getUid()).child(EjerciciosGuardados.TAG_FECHA).child(nombreEntrenamiento);
 
         final AdaptadorEjerciciosEmtrenamientos adaptador = new AdaptadorEjerciciosEmtrenamientos(this, array);
@@ -112,8 +111,6 @@ public class EjerciciosEntrenamientos extends AppCompatActivity implements Adapt
 
     @Override
     public void onTipoSelected(Ejercicios ej) {
-        //Toast.makeText(this, ej.getNombre(), Toast.LENGTH_SHORT).show();
-
         TipoEjercicio.TAG_EJERCICIO = ej.getNombre();
         Intent i = new Intent(EjerciciosEntrenamientos.this, DescripcionEjercicio.class);
         i.putExtra(TipoEjercicio.TAG_EJERCICIO, ej);

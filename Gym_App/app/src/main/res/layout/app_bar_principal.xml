@@ -28,6 +28,8 @@
             app:tabIndicatorHeight="2dp"
             app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
             app:tabSelectedTextColor="@android:color/white"
+            app:tabIndicatorColor="@color/white"
+            android:backgroundTint="@color/white"
             app:tabTextColor="@android:color/white"
             app:tabMode="fixed" />
 

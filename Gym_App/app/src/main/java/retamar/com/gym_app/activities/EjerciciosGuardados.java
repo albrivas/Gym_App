@@ -124,9 +124,10 @@ public class EjerciciosGuardados extends AppCompatActivity implements  Adaptador
     @Override
     public void onTipoSelected(Entrenamiento ej) {
         TAG_ENTRENAMIENTO = ej.getNombre();
-
-        Intent i = new Intent(EjerciciosGuardados.this, EjerciciosEntrenamientos.class);
-        i.putExtra(TAG_ENTRENAMIENTO, ej.getNombre());
-        startActivity(i);
+        if(!ej.getNombre().equals("No hay entrenamientos disponibles")) {
+            Intent i = new Intent(EjerciciosGuardados.this, EjerciciosEntrenamientos.class);
+            i.putExtra(TAG_ENTRENAMIENTO, ej.getNombre());
+            startActivity(i);
+        }
     }
 }
